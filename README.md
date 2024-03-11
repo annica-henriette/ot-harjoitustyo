@@ -1,4 +1,4 @@
-# Content
+# Ohjelmistotekniikan harjoitustyö
 
 This document contains the **content** of this _application_ for the course
  ***Ohjelmistotekniikka***.
@@ -11,3 +11,4 @@ This document contains the **content** of this _application_ for the course
 [komentorivi.txt](https://github.com/annica-henriette/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
 
 ### Viikko 2
+
