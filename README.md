@@ -12,7 +12,7 @@ This document contains the **content** of this _application_ for the course
 
 ### Viikko 2
 
-[Vaatimusmäärittely](https://github.com/annica-henriette/ot-harjoitustyo/blob/master/dokumentaatio/vaatimuusmaarittely.md)
+[Vaatimusmäärittely](https://github.com/annica-henriette/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
 [Työaikakirjanpito](https://github.com/annica-henriette/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
 
