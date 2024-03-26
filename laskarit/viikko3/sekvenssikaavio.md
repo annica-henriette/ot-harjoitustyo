@@ -6,7 +6,9 @@ sequenceDiagram
     main->>rautaitetori: Lataajalaite()
     main->>ratikka6: Lukijalaite()
     main->>bussi244: Lukijalaite()
-    main->>laitehallinto: lisaa_lataaja(rautatietori)
-    main->>laitehallinto: lisaa_lukija(ratikka6)
-    main->>laitehallinto: lisaa_lukija(bussi244)
+    laitehallinto->>rautatietori: lisaa_lataaja(rautatietori)
+    laitehallinto->>ratikka6: lisaa_lukija(ratikka6)
+    laitehallinto->>bussi244: lisaa_lukija(bussi244)
+    main->>lippu_luukku: Kioski()
+    lippu_luukku->>kallen_kortti: osta_matkakortti("Kalle")
 ```
