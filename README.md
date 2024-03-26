@@ -16,3 +16,4 @@ This document contains the **content** of this _application_ for the course
 
 [Työaikakirjanpito](https://github.com/annica-henriette/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
 
+### [Viikko 3](https://github.com/annica-henriette/ot-harjoitustyo/tree/master/laskarit/viikko3)
