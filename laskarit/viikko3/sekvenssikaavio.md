@@ -1,6 +1,12 @@
 ```mermaid
 sequenceDiagram
-    participant HKLLaitehallinto
+    participant laitehallinto
+    participant rautatietori
+    participant ratikka6
+    participant bussi244
 
-    main->>HKLLaitehallinto: laitehallinto
+    main->>laitehallinto: HKLLaitehallinto()
+    main->>rautaitetori: Lataajalaite()
+    main->>ratikka6: Lukijalaite()
+    main->>bussi244: Lukijalaite()
 ```
