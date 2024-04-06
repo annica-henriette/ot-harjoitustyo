@@ -1,11 +1,18 @@
-import os
-from dotenv import load_dotenv
+from tkinter import Tk, ttk
 
-dirname = os.path.dirname(__file__)
+class UI:
+    def __init__(self, root):
+        self._root = root
 
-try:
-    load_dotenv(dotenv_path=os.path.join(dirname, "..", ".env"))
-except FileNotFoundError:
-    pass
+    def start(self):
+        label = ttk.Label(master=self._root, text="Hello world!")
 
-print(os.getenv("DATABASE_FILENAME"))
+        label.pack()
+
+window = Tk()
+window.title("Workout application")
+
+ui = UI(window)
+ui.start()
+
+window.mainloop()
