@@ -1,7 +1,7 @@
 class Workout:
 
-    def __init__(self, content, user=None, workout_id=None):
-        
-        self.content = content
-        self.user = user
+    def __init__(self, content, username=None, workout_id=None):
+        self.user = username
         self.id = workout_id
+        self.content = content
+      # self.time = time
