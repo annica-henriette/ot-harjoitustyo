@@ -1,4 +1,5 @@
 # Workout App
+Sovelluksen tarkoitus on, että käyttäjä voi pitää kirjaa omista treeneistä ja hallinnoida niitä.
 
 ## Dokumentaatio
 

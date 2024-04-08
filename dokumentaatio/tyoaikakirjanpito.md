@@ -6,7 +6,8 @@
 - 1 tunti
 
 ## Viikko 3
-- alustava toiminnallisuus
-- ensimmäinen testi
-- kolme taskia
-- 3 tuntia
+- Alustava toiminnallisuus
+- Ensimmäiset testit User-luokalle
+- Kolme taskia laadittu
+- Workout-luokan alustus
+- 5 tuntia
