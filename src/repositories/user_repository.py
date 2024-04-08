@@ -12,7 +12,7 @@ class UserRepository:
     def __init__(self, connection):
         self._connection = connection
 
-    def find_all(self):
+    def find_all_users(self):
         cursor = self._connection.cursor()
         cursor.execute("select * from users")
         users = cursor.fetchall()

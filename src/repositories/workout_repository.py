@@ -10,18 +10,21 @@ class WorkoutRepository:
     def _file_exists(self):
         Path(self._file_path).touch()
 
-    def _write(sefl, workouts):
+    def _write(self, workouts):
         self._file_exists()
 
         with open(self._file_path, "w", encoding="utf-8") as file:
             for workout in workouts:
-                username = workout.user.username if workout.user else ""
+                if workout.user:
+                    username = workout.user.username
+                else:
+                    ""
 
                 row = f"{workout.id};{workout.content};{username}"
 
                 file.write(row+"\n")
 
-    def delete_all(self):
+    def delete_all_workouts(self):
 
         self._write([])
 
