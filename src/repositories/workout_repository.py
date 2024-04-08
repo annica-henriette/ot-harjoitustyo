@@ -15,6 +15,13 @@ class WorkoutRepository:
 
         return workout
 
+    def list_all_workouts(self):
+        cursor = self._connection.cursor()
+        cursor.execute("select * from workouts")
+        workouts = cursor.fetchall()
+
+        return [Workout(row["content"], row["user"]) if row else None for row in workouts]
+
     def delete_all_workouts(self):
         cursor = self._connection.cursor()
         cursor.execute("delete from workouts")
