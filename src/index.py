@@ -1,18 +1,14 @@
-from tkinter import Tk, ttk
+from tkinter import Tk
+from ui.ui import UI
 
-class UI:
-    def __init__(self, root):
-        self._root = root
+def main():
+    window = Tk()
+    window.title("Workout application")
 
-    def start(self):
-        label = ttk.Label(master=self._root, text="Hello world!")
+    ui_view = UI(window)
+    ui_view.start()
 
-        label.pack()
+    window.mainloop()
 
-window = Tk()
-window.title("Workout application")
-
-ui = UI(window)
-ui.start()
-
-window.mainloop()
+if __name__ == "__main__":
+    main()
