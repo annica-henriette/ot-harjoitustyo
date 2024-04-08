@@ -1,31 +1,33 @@
 from tkinter import Tk, ttk, constants
+from ui.login_view import LoginView
 
 class UI:
     def __init__(self, root):
         self._root = root
+        self._current_view = None
 
     def start(self):
-        heading_label = ttk.Label(master=self._root, text="Sisäänkirjautuminen")
-        username_label = ttk.Label(master=self._root, text="Käyttäjätunnus")
-        username_entry = ttk.Entry(master=self._root)
+        self._show_login_view()
 
-        password_label = ttk.Label(master=self._root, text="Salasana")
-        password_entry = ttk.Entry(master=self._root)
+    def _hide_current_view(self):
+        if self._current_view:
+            self._current_view.destroy()
 
-        button = ttk.Button(
-            master=self._root,
-            text="Kirjaudu",
+        self._current_view = None
+
+    def _show_login_view(self):
+        self._hide_current_view()
+
+        self._current_view = LoginView(
+            self._root,
+            self._handle_login,
+            self._show_handle_sign_up_view
         )
 
-        x=2
-        y=2
+        self._current_view.pack()
 
-        heading_label.grid(columnspan=2, sticky=constants.W, padx=x, pady=y)
-        username_label.grid(padx=x, pady=y)
-        username_entry.grid(row=1, column=1, sticky=(constants.E, constants.W), padx=x, pady=y)
-        password_label.grid(padx=x, pady=y)
-        password_entry.grid(row=2, column=1, sticky=(constants.E, constants.W), padx=x, pady=y)
-        button.grid(columnspan=2, sticky=(constants.E, constants.W), padx=x, pady=y)
+    def _show_handle_sign_up_view(self):
+        pass
 
-        self._root.grid_columnconfigure(1, weight=1, minsize=300)
-
+    def _handle_login(self):
+        pass
