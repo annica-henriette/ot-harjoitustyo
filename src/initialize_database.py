@@ -8,6 +8,10 @@ def drop_tables(connection):
         drop table if exists users;
     ''')
 
+    cursor.execute('''
+        drop table if exists workouts;
+    ''')
+
     connection.commit()
 
 
@@ -18,6 +22,14 @@ def create_tables(connection):
         create table users (
             username text primary key,
             password text
+        );
+    ''')
+
+    cursor.execute('''
+        create table workouts (
+            id integer primary key,
+            user text,
+            content text
         );
     ''')
 

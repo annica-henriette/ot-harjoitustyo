@@ -1,34 +1,29 @@
 from entities.workout import Workout
 from repositories.user_repository import user_repository
-from config import WORKOUT_FILE_PATH
+from database_connection import get_database_connection
 
 class WorkoutRepository:
 
-    def __init__(self, file_path):
-        self._file_path = file_path
+    def __init__(self, connection):
+        self._connection = connection
 
-    def _write(self, workouts):
-        if self._file_path:
+    def create_workout(self, workout):
+        cursor = self._connection.cursor()
+        cursor.execute("insert into workouts (id, user, content) values (?, ?, ?)", (workout.id, workout.user, workout.content))
 
-            with open(self._file_path, "w") as file:
-                for workout in workouts:
-                    if workout.user:
-                        username = workout.user.username
-                    else:
-                        ""
+        self._connection.commit()
 
-                    row = f"{workout.id};{username};{workout.content}"
-
-                    file.write(row+"\n")
+        return workout
 
     def delete_all_workouts(self):
-
-        self._write([])
+        cursor = self._connection.cursor()
+        cursor.execute("delete from workouts")
+        self._connection.commit()
 
 # def list_all_workouts()
 # def delete_one_workout()
 # def modify_workout()
 
 
-workout_repository = WorkoutRepository(WORKOUT_FILE_PATH)
+workout_repository = WorkoutRepository(get_database_connection())
 
