@@ -6,8 +6,8 @@ class TestUserRepository(unittest.TestCase):
     def setUp(self):
         self.user_testi = User("testi", "abc")
 
-    def test_create(self):
-        user_repository.create(self.user_testi)
+    def test_create_user(self):
+        user_repository.create_user(self.user_testi)
         users = user_repository.find_all()
 
         self.assertEqual(len(users), 1)
