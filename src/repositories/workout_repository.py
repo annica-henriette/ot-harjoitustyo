@@ -9,7 +9,7 @@ class WorkoutRepository:
 
     def create_workout(self, workout):
         cursor = self._connection.cursor()
-        cursor.execute("insert into workouts (id, user, content) values (?, ?, ?)", (workout.id, workout.user, workout.content))
+        cursor.execute("insert into workouts (content, user, id) values (?, ?, ?)", (workout.content, workout.user, workout.id))
 
         self._connection.commit()
 

@@ -5,3 +5,12 @@ from entities.workout import Workout
 class TestWorkoutRepository(unittest.TestCase):
     def SetUp(self):
         workout_repository.delete_all_workouts()
+        self.workout_running = Workout("running", "tupu", 1)
+
+    def test_create_workout(self):
+        workout_repository.create_workout(self.workout_running)
+        workouts = workout_repository.find_all_workouts()
+
+        self.assertEqual(len(workouts), 1)
+        self.assertEqual(workouts[0].user, self.workout_running.user)
+
