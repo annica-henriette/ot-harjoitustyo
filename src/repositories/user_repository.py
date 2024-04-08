@@ -22,9 +22,9 @@ class UserRepository:
         return user
 
     def delete_all_users(self):
-
         cursor = self._connection.cursor()
         cursor.execute("delete from users")
+
         self._connection.commit()
 
 user_repository = UserRepository(get_database_connection())
