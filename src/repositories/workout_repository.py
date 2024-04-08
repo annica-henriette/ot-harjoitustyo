@@ -7,11 +7,8 @@ class WorkoutRepository:
     def __init__(self, file_path):
         self._file_path = file_path
 
-    def _file_exists(self):
-        Path(self._file_path).touch()
-
     def _write(self, workouts):
-        if self._file_exists():
+        if self._file_path:
 
             with open(self._file_path, "w") as file:
                 for workout in workouts:
@@ -27,6 +24,11 @@ class WorkoutRepository:
     def delete_all_workouts(self):
 
         self._write([])
+
+# def list_all_workouts()
+# def delete_one_workout()
+# def modify_workout()
+
 
 workout_repository = WorkoutRepository(WORKOUT_FILE_PATH)
 
