@@ -9,7 +9,7 @@ class WorkoutRepository:
 
     def create_workout(self, workout):
         cursor = self._connection.cursor()
-        cursor.execute("insert into workouts (content, user, id) values (?, ?, ?)", (workout.content, workout.user, workout.id))
+        cursor.execute("insert into workouts (content, user) values (?, ?)", (workout.content, workout.user))
 
         self._connection.commit()
 
@@ -27,7 +27,6 @@ class WorkoutRepository:
         cursor.execute("delete from workouts")
         self._connection.commit()
 
-# def list_all_workouts()
 # def delete_one_workout()
 # def modify_workout()
 
