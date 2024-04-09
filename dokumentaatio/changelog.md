@@ -1,8 +1,9 @@
 ## Viikko 3
 
-- Käyttäjän voi luoda
+- Käyttäjän voi luoda (ei graafisessa käyttöliittymässä)
 - Testattu, että käyttäjän voi luoda
 - Testattu, että kaikki käyttäjät voi poistaa
 - Testattu, että kaikki käyttäjät voi listata
+- Testattu, että yhden tietyn käyttäjän voi löytää
 - Treenin voi luoda
 - Testattu, että treenin voi luoda

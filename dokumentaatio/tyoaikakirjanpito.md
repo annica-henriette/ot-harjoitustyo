@@ -12,4 +12,4 @@
 - Kolme taskia laadittu
 - Workout-luokan alustus
 - TkInterin käyttöönotto ja graafisen käyttöliittymän toteutuksen aloittaminen
-- 7 tuntia
+- 8 tuntia
