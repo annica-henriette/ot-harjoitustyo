@@ -5,7 +5,7 @@ from entities.workout import Workout
 class TestWorkoutRepository(unittest.TestCase):
     def setUp(self):
         workout_repository.delete_all_workouts()
-        self.workout_running = Workout("running", "tupu")
+        self.workout_running = Workout("tupu", "running")
 
     def test_create_workout(self):
         workout_repository.create_workout(self.workout_running)

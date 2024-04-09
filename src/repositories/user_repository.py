@@ -11,7 +11,7 @@ class UserRepository:
         cursor.execute("select * from users")
         users = cursor.fetchall()
 
-        return [User(row["username"], row["password"]) if row else None for row in users]
+        return [User(user["username"], user["password"]) if user else None for user in users]
 
     def create_user(self, user):
         cursor = self._connection.cursor()
@@ -26,5 +26,13 @@ class UserRepository:
         cursor.execute("delete from users")
 
         self._connection.commit()
+
+    def find_one_user(self, user):
+        cursor = self._connection.cursor()
+        cursor.execute("select * from users where username=?", (user.username,))
+        user = cursor.fetchone()
+
+        return User(user["username"], user["password"]) if user else None
+
 
 user_repository = UserRepository(get_database_connection())

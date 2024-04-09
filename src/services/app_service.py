@@ -1,6 +1,5 @@
 from entities.workout import Workout
 from entities.user import User
-
 from repositories.user_repository import user_repository
 from repositories.workout_repository import workout_repository
 
@@ -12,7 +11,7 @@ class AppService:
         self._user_repository = user_rep
 
     def create_workout(self, content):
-        workout = Workout(content, user = self._user)
+        workout = Workout(content, user=self._user)
 
         return self._workout_repository.create(workout)
 

@@ -1,5 +1,5 @@
 class Workout:
-    def __init__(self, content, user=None):
+    def __init__(self, user, content):
         self.user = user
         self.content = content
       # self.time = time

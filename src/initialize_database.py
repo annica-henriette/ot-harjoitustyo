@@ -4,13 +4,8 @@ from database_connection import get_database_connection
 def drop_tables(connection):
     cursor = connection.cursor()
 
-    cursor.execute('''
-        drop table if exists users;
-    ''')
-
-    cursor.execute('''
-        drop table if exists workouts;
-    ''')
+    cursor.execute('''drop table if exists users;''')
+    cursor.execute('''drop table if exists workouts;''')
 
     connection.commit()
 
@@ -19,18 +14,10 @@ def create_tables(connection):
     cursor = connection.cursor()
 
     cursor.execute('''
-        create table users (
-            username text primary key,
-            password text
-        );
+        create table users (username text primary key, password text);
     ''')
-
     cursor.execute('''
-        create table workouts (
-            id integer primary key,
-            user text,
-            content text
-        );
+        create table workouts (user text, content text);
     ''')
 
     connection.commit()

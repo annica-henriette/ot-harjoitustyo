@@ -18,7 +18,11 @@ class LoginView:
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
+
         heading_label = ttk.Label(master=self._frame, text="Sisäänkirjautuminen")
+
+        signup_label = ttk.Label(master=self._frame, text="Eikö sinulla ole käyttäjätunnusta?")
+
         username_label = ttk.Label(master=self._frame, text="Käyttäjätunnus")
         username_entry = ttk.Entry(master=self._frame)
 
@@ -37,15 +41,18 @@ class LoginView:
             command=self._handle_show_sign_up_view
         )
 
-        x=2
-        y=2
+        Pos_X=2
+        Pos_Y=2
 
-        heading_label.grid(columnspan=2, sticky=constants.W, padx=x, pady=y)
-        username_label.grid(padx=x, pady=y)
-        username_entry.grid(row=1, column=1, sticky=(constants.E, constants.W), padx=x, pady=y)
-        password_label.grid(padx=x, pady=y)
-        password_entry.grid(row=2, column=1, sticky=(constants.E, constants.W), padx=x, pady=y)
-        login_button.grid(columnspan=2, sticky=(constants.E, constants.W), padx=x, pady=y)
-        signup_button.grid(columnspan=2, sticky=(constants.E, constants.W), padx=x, pady=y)
+        heading_label.grid(columnspan=2, sticky=constants.W, padx=Pos_X, pady=Pos_Y)
+
+        username_label.grid(padx=Pos_X, pady=Pos_Y)
+        username_entry.grid(row=1, column=1, sticky=(constants.E, constants.W), padx=Pos_X, pady=Pos_Y)
+        password_label.grid(padx=Pos_X, pady=Pos_Y)
+        password_entry.grid(row=2, column=1, sticky=(constants.E, constants.W), padx=Pos_X, pady=Pos_Y)
+        login_button.grid(columnspan=2, sticky=(constants.E, constants.W), padx=Pos_X, pady=Pos_Y)
+
+        signup_label.grid(columnspan=2, sticky=(constants.E, constants.W), padx=Pos_X, pady=Pos_Y)
+        signup_button.grid(columnspan=2, sticky=(constants.E, constants.W), padx=Pos_X, pady=Pos_Y)
 
         self._frame.grid_columnconfigure(1, weight=1, minsize=300)

@@ -3,7 +3,7 @@ from ui.ui import UI
 
 def main():
     window = Tk()
-    window.title("Workout application")
+    window.title("Treenipäiväkirja")
 
     ui_view = UI(window)
     ui_view.start()
