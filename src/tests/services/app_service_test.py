@@ -1,7 +1,7 @@
 import unittest
 from entities.workout import Workout
 from entities.user import User
-from services.app_service import AppService
+from services.app_service import (AppService, InvalidLoginError, UsernameTakenError)
 
 
 class WorkoutRepositoryForTesting:
@@ -64,7 +64,7 @@ class TestAppService(unittest.TestCase):
         self.assertEqual(workouts[0].content, "running")
         self.assertEqual(workouts[0].user.username, self.user_hupu.username)
 
-    def test_login(self):
+    def test_login_valid(self):
         self.app_service.create_user(
             self.user_hupu.username, self.user_hupu.password)
 
@@ -72,3 +72,6 @@ class TestAppService(unittest.TestCase):
             self.user_hupu.username, self.user_hupu.password)
 
         self.assertEqual(user.username, self.user_hupu.username)
+
+    def test_login_invalid(self):
+        self.assertRaises(InvalidLoginError, lambda: self.app_service.login("test", ""))
