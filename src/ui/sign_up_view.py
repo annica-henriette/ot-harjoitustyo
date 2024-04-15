@@ -45,11 +45,7 @@ class SignUpView:
         password_label.grid(padx=2, pady=2, sticky=constants.W)
         self._password.grid(padx=2, pady=2, sticky=constants.EW)
 
-    def _initialize(self):
-        self._frame = ttk.Frame(master=self._root)
-
-        self._username_field()
-        self._password_field()
+    def _initialize_buttons(self):
 
         signup_button = ttk.Button(
             master=self._frame,
@@ -63,7 +59,22 @@ class SignUpView:
             command=self._handle_show_login_view
         )
 
-        self._frame.grid_columnconfigure(0, weight=1, minsize=400)
+        back_button = ttk.Button(
+            master=self._frame,
+            text="Takaisin",
+            command=self._handle_show_login_view
+        )
 
-        signup_button.grid(padx=2, pady=2, sticky=constants.EW)
-        login_button.grid(padx=2, pady=2, sticky=constants.EW)
+        signup_button.grid(padx=4, pady=4, sticky=constants.EW)
+        login_button.grid(padx=4, pady=4, sticky=constants.EW)
+        back_button.grid(padx=4, pady=4, sticky=constants.EW)
+
+    def _initialize(self):
+        self._frame = ttk.Frame(master=self._root)
+
+        self._username_field()
+        self._password_field()
+
+        self._initialize_buttons()
+
+        self._frame.grid_columnconfigure(0, weight=1, minsize=400)
