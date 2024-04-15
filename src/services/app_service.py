@@ -3,6 +3,7 @@ from entities.user import User
 from repositories.user_repository import user_repository
 from repositories.workout_repository import workout_repository
 
+
 class AppService:
 
     def __init__(self, workout_rep=workout_repository, user_rep=user_repository):
@@ -22,5 +23,6 @@ class AppService:
 # def get_current_user
 # def get_all_users
 # def modify_workout
+
 
 app_service = AppService()

@@ -1,6 +1,7 @@
 from entities.user import User
 from database_connection import get_database_connection
 
+
 class UserRepository:
 
     def __init__(self, connection):
@@ -15,7 +16,8 @@ class UserRepository:
 
     def create_user(self, user):
         cursor = self._connection.cursor()
-        cursor.execute("insert into users (username, password) values (?, ?)", (user.username, user.password))
+        cursor.execute("insert into users (username, password) values (?, ?)",
+                       (user.username, user.password))
 
         self._connection.commit()
 
@@ -29,7 +31,8 @@ class UserRepository:
 
     def find_one_user(self, user):
         cursor = self._connection.cursor()
-        cursor.execute("select * from users where username=?", (user.username,))
+        cursor.execute("select * from users where username=?",
+                       (user.username,))
         user = cursor.fetchone()
 
         return User(user["username"], user["password"]) if user else None

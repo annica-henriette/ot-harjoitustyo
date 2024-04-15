@@ -1,6 +1,7 @@
 from tkinter import Tk, ttk, constants
 from ui.login_view import LoginView
 
+
 class UI:
     def __init__(self, root):
         self._root = root
