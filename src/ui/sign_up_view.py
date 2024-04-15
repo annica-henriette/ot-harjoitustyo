@@ -95,7 +95,8 @@ class SignUpView:
         self._error_label = ttk.Label(
             master=self._frame,
             textvariable=self._error_variable,
-            foreground = "red"
+            foreground = "black",
+            background = "red"
         )
 
         self._username_field()

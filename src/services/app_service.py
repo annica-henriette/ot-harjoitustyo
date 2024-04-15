@@ -26,7 +26,7 @@ class AppService:
         user = User(username, password)
         found_user = self._user_repository.find_one_user(user)
 
-        if not user or user.password != password:
+        if not found_user or found_user.password != password:
             raise InvalidLoginError("Väärä käyttäjätunnus tai salasana")
 
         self._user = found_user
