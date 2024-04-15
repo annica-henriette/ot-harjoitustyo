@@ -29,13 +29,15 @@ class UserRepository:
 
         self._connection.commit()
 
-    def find_one_user(self, user):
+    def find_one_user(self, username):
         cursor = self._connection.cursor()
         cursor.execute("select * from users where username=?",
-                       (user.username,))
+                       (username,))
         user = cursor.fetchone()
 
-        return User(user["username"], user["password"]) if user else None
-
+        if user:
+            return User(user["username"], user["password"])
+        else:
+            return None
 
 user_repository = UserRepository(get_database_connection())

@@ -23,22 +23,21 @@ class AppService:
         return self._workout_repository.create_workout(workout)
 
     def login(self, username, password):
-        user = User(username, password)
-        found_user = self._user_repository.find_one_user(user)
+        user = self._user_repository.find_one_user(username)
 
-        if not found_user or found_user.password != password:
+        if not user or user.password != password:
             raise InvalidLoginError("Väärä käyttäjätunnus tai salasana")
 
-        self._user = found_user
+        self._user = user
 
-        return found_user
+        return user
 
     def logout(self):
         self._user = None
 
     def create_user(self, username, password, login=True):
 
-        taken_username = self._user_repository.find_one_user(User(username, password))
+        taken_username = self._user_repository.find_one_user(username)
 
         if taken_username:
             raise UsernameTakenError(f"Käyttäjätunnus {username} on jo käytössä")

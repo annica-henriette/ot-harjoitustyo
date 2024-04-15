@@ -41,7 +41,7 @@ class TestUserRepository(unittest.TestCase):
     def test_find_one_user(self):
         user_repository.create_user(self.user_hupu)
 
-        user = user_repository.find_one_user(self.user_hupu)
+        user = user_repository.find_one_user(self.user_hupu.username)
 
         self.assertEqual(user.username, self.user_hupu.username)
         self.assertEqual(user.password, self.user_hupu.password)
