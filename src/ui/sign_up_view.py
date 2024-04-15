@@ -1,5 +1,5 @@
 from tkinter import ttk, StringVar, constants
-from services.app_service import app_service
+from services.app_service import app_service, UsernameTakenError
 
 
 class SignUpView:
@@ -12,6 +12,8 @@ class SignUpView:
         self._frame = None
         self._username = None
         self._password = None
+        self._error_variable = None
+        self._error_label = None
 
         self._initialize()
 
@@ -25,10 +27,26 @@ class SignUpView:
         username = self._username.get()
         password = self._password.get()
 
-        # if len(username) == 0 or len(password) == 0:
+        if len(username) == 0 or len(password) == 0:
+            self._error("Käyttäjätunnus tai salasana ei voi olla tyhjä")
+            return
 
-        app_service.create_user(username, password)
-        self._handle_signup()
+        if len(password) < 3:
+            self._error("Salasanan täytyy olla vähintään kolme merkkiä")
+            return
+
+        try:
+            app_service.create_user(username, password)
+            self._handle_signup()
+        except UsernameTakenError:
+            self._error(f"Käyttäjätunnus {username} on jo käytössä")
+
+    def _error(self, message):
+        self._error_variable.set(message)
+        self._error_label.grid()
+
+    def _hide_error(self):
+        self._error_label.grid_remove()
 
     def _username_field(self):
         username_label = ttk.Label(master=self._frame, text="Käyttäjätunnus")
@@ -73,9 +91,18 @@ class SignUpView:
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
 
+        self._error_variable = StringVar(self._frame)
+        self._error_label = ttk.Label(
+            master=self._frame,
+            textvariable=self._error_variable,
+            foreground = "red"
+        )
+
         self._username_field()
         self._password_field()
 
         self._initialize_buttons()
 
         self._frame.grid_columnconfigure(0, weight=1, minsize=400)
+
+        self._hide_error()
