@@ -37,6 +37,8 @@ class UI:
             self._show_login_view
         )
 
+        self._current_view.pack()
+
     def _show_workout_view(self):
         self._destroy_current_view()
 
