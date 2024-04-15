@@ -3,6 +3,7 @@ from ui.login_view import LoginView
 from ui.sign_up_view import SignUpView
 from ui.workout_diary_view import WorkoutView
 
+
 class UI:
     def __init__(self, root):
         self._root = root
@@ -45,5 +46,3 @@ class UI:
         self._current_view = WorkoutView(self._root, self._show_login_view)
 
         self._current_view.pack()
-
-

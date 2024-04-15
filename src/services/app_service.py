@@ -3,6 +3,11 @@ from entities.user import User
 from repositories.user_repository import user_repository
 from repositories.workout_repository import workout_repository
 
+class UsernameTakenError(Exception):
+    pass
+
+class InvalidLoginError(Exception):
+    pass
 
 class AppService:
 
@@ -21,19 +26,22 @@ class AppService:
 
         user = self._user_repository.find_one_user(username)
 
-        # handle invalid credentials
+        if not user or user.password != password:
+            raise InvalidLoginError("Väärä käyttäjätunnus tai salasana")
 
         self._user = user
 
         return user
 
     def logout(self):
-
         self._user = None
 
     def create_user(self, username, password, login=True):
 
-        # handle two same usernames
+        taken_username = self._user_repository.find_one_user(username)
+
+        if taken_username:
+            raise UsernameTakenError(f"Käyttäjätunnus {username} on jo käytössä")
 
         user = self._user_repository.create_user(User(username, password))
 
@@ -48,8 +56,12 @@ class AppService:
 
         return workouts
 
-# def get_current_user
-# def get_all_users
+    def loggedin_user(self):
+        return self._user
+
+    def get_all_users(self):
+        return self._user_repository.find_all_users()
+
 # def modify_workout
 
 

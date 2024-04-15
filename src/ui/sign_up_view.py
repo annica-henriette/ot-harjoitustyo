@@ -1,6 +1,7 @@
 from tkinter import ttk, StringVar, constants
 from services.app_service import app_service
 
+
 class SignUpView:
 
     def __init__(self, root, handle_signup, handle_show_login_view):
@@ -38,7 +39,7 @@ class SignUpView:
         self._username.grid(padx=2, pady=2, sticky=constants.EW)
 
     def _password_field(self):
-        password_label = ttk.Label(master=self._frame, text = "Salasana")
+        password_label = ttk.Label(master=self._frame, text="Salasana")
 
         self._password = ttk.Entry(master=self._frame)
 

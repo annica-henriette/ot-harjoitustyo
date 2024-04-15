@@ -3,6 +3,7 @@ from entities.workout import Workout
 from entities.user import User
 from services.app_service import AppService
 
+
 class WorkoutRepositoryForTesting:
     def __init__(self, workouts=None):
         self.workouts = workouts or []
@@ -17,6 +18,7 @@ class WorkoutRepositoryForTesting:
 
     def delete_all_workouts(self):
         self.workouts = []
+
 
 class UserRepositoryForTesting:
     def __init__(self, users=None):
@@ -41,9 +43,11 @@ class UserRepositoryForTesting:
         else:
             return None
 
+
 class TestAppService(unittest.TestCase):
     def setUp(self):
-        self.app_service = AppService(WorkoutRepositoryForTesting(), UserRepositoryForTesting())
+        self.app_service = AppService(
+            WorkoutRepositoryForTesting(), UserRepositoryForTesting())
 
         self.user_hupu = User("hupu", "123")
 
@@ -61,8 +65,10 @@ class TestAppService(unittest.TestCase):
         self.assertEqual(workouts[0].user.username, self.user_hupu.username)
 
     def test_login(self):
-        self.app_service.create_user(self.user_hupu.username, self.user_hupu.password)
+        self.app_service.create_user(
+            self.user_hupu.username, self.user_hupu.password)
 
-        user = self.app_service.login(self.user_hupu.username, self.user_hupu.password)
+        user = self.app_service.login(
+            self.user_hupu.username, self.user_hupu.password)
 
         self.assertEqual(user.username, self.user_hupu.username)
