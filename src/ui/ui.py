@@ -1,6 +1,7 @@
 from tkinter import Tk, ttk, constants
 from ui.login_view import LoginView
-
+from ui.sign_up_view import SignUpView
+from ui.workout_diary_view import WorkoutView
 
 class UI:
     def __init__(self, root):
@@ -21,19 +22,26 @@ class UI:
 
         self._current_view = LoginView(
             self._root,
-            self._handle_login,
+            self._show_workout_view,
             self._show_handle_sign_up_view
         )
 
         self._current_view.pack()
 
     def _show_handle_sign_up_view(self):
-        pass
-      # self._destroy_current_view()
+        self._destroy_current_view()
 
-      # self._current_view = SignupView...
+        self._current_view = SignUpView(
+            self._root,
+            self._show_workout_view,
+            self._show_login_view
+        )
 
-      # self._current_view.pack()
+    def _show_workout_view(self):
+        self._destroy_current_view()
 
-    def _handle_login(self):
-        pass
+        self._current_view = WorkoutView(self._root, self._show_login_view)
+
+        self._current_view.pack()
+
+

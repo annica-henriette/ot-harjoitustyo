@@ -13,3 +13,7 @@
 - Workout-luokan alustus
 - TkInterin käyttöönotto ja graafisen käyttöliittymän toteutuksen aloittaminen
 - 8 tuntia
+
+## Viikko 4
+- Pylint-käyttöönotto 0,5 t
+- Arkkitehtuurikuvaus 1,0 t

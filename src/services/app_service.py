@@ -16,9 +16,31 @@ class AppService:
 
         return self._workout_repository.create(workout)
 
-# def login
-# def logout
-# def create_user
+    def login(self, username, password):
+
+        user = self._user_repository.find_one_user(username)
+
+        # handle invalid credentials
+
+        self._user = user
+
+        return user
+
+    def logout(self):
+
+        self._user = None
+
+    def create_user(self, username, password, login=True):
+
+        # handle two same usernames
+
+        user = self._user_repository.create_user(User(username, password))
+
+        if login:
+            self._user = user
+
+        return user
+
 # def list_all_users_workouts
 # def get_current_user
 # def get_all_users
