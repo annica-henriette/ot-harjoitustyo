@@ -10,7 +10,7 @@ class LoginView:
         self._frame = None
         self._username = None
         self._password = None
-        self._error_variable = None
+        self._error_message = None
         self._error_label = None
 
         self._initialize()
@@ -32,7 +32,7 @@ class LoginView:
             self._error("Väärä käyttäjätunnus tai salasana")
 
     def _error(self, message):
-        self._error_variable.set(message)
+        self._error_message.set(message)
         self._error_label.grid()
 
     def _hide_error(self):
@@ -74,8 +74,7 @@ class LoginView:
         signup_label = ttk.Label(
             master=self._frame, text="Eikö sinulla ole käyttäjätunnusta?")
 
-        signup_label.grid(columnspan=2, sticky=(
-            constants.E, constants.W), padx=3, pady=3)
+        signup_label.grid(columnspan=2, padx=3, pady=3)
 
         signup_button.grid(columnspan=2, sticky=(
             constants.E, constants.W), padx=2, pady=2)
@@ -83,11 +82,11 @@ class LoginView:
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
 
-        self._error_variable = StringVar(self._frame)
+        self._error_message = StringVar(self._frame)
 
         self._error_label = ttk.Label(
             master=self._frame,
-            textvariable=self._error_variable,
+            textvariable=self._error_message,
             foreground="black",
             background = "red"
         )
@@ -96,8 +95,7 @@ class LoginView:
 
         heading_label = ttk.Label(
             master=self._frame, text="Sisäänkirjautuminen")
-        heading_label.grid(columnspan=2, sticky=constants.W,
-                           padx=3, pady=3)
+        heading_label.grid(columnspan=2, padx=3, pady=3)
 
         self._username_field()
         self._password_field()

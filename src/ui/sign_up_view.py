@@ -12,7 +12,7 @@ class SignUpView:
         self._frame = None
         self._username = None
         self._password = None
-        self._error_variable = None
+        self._error_message = None
         self._error_label = None
 
         self._initialize()
@@ -42,7 +42,7 @@ class SignUpView:
             self._error(f"Käyttäjätunnus {username} on jo käytössä")
 
     def _error(self, message):
-        self._error_variable.set(message)
+        self._error_message.set(message)
         self._error_label.grid()
 
     def _hide_error(self):
@@ -91,13 +91,17 @@ class SignUpView:
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
 
-        self._error_variable = StringVar(self._frame)
+        self._error_message = StringVar(self._frame)
         self._error_label = ttk.Label(
             master=self._frame,
-            textvariable=self._error_variable,
+            textvariable=self._error_message,
             foreground = "black",
             background = "red"
         )
+
+        heading_label = ttk.Label(
+            master=self._frame, text="Luo käyttäjä")
+        heading_label.grid(columnspan=2, padx=3, pady=3)
 
         self._username_field()
         self._password_field()
