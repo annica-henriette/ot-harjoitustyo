@@ -23,9 +23,10 @@ class TestUserRepository(unittest.TestCase):
         self.assertEqual(len(users), 1)
         self.assertEqual(users[0].username, self.user_hupu.username)
 
-        users = user_repository.delete_all_users()
+        user_repository.delete_all_users()
+        users = user_repository.find_all_users()
 
-        self.assertIsNone(users)
+        self.assertEqual(len(users), 0)
 
     def test_find_all_users(self):
         user_repository.create_user(self.user_hupu)

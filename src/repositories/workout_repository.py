@@ -27,7 +27,7 @@ class WorkoutRepository:
 
     def list_all_user_workouts(self, username):
         cursor = self._connection.cursor()
-        cursor.execute("select * from workouts where user=?", (username))
+        cursor.execute("select * from workouts where user=?", (username,))
         user_workouts = cursor.fetchall()
 
         return [Workout(workout["content"], workout["user"]) if workout
