@@ -8,7 +8,7 @@ Sovellus muodostuu luokista
 - [Workout](https://github.com/annica-henriette/ot-harjoitustyo/blob/master/src/entities/workout.py)
 
 ```mermaid
- class Diagram
+ classDiagram
        Workout "*" --> "1" User
        class User{
            username
@@ -26,7 +26,7 @@ Toiminnallisuudesta vastaa luokka [AppService](https://github.com/annica-henriet
 AppService pääsee käsiksi luokkiin User ja Workout luokkien [WorkoutRepository](https://github.com/annica-henriette/ot-harjoitustyo/blob/master/src/repositories/workout_repository.py) ja [UserRepository](https://github.com/annica-henriette/ot-harjoitustyo/blob/master/src/repositories/user_repository.py) kautta.
 
 ```mermaid
- class Diagram
+ classDiagram
        Workout "*" -- "1" User
        AppService "0..1" -- "0..1" User
        AppService "0..1" -- "0..1" Workout
