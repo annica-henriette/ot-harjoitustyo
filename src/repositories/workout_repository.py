@@ -10,8 +10,8 @@ class WorkoutRepository:
 
     def create_workout(self, workout):
         cursor = self._connection.cursor()
-        cursor.execute("insert into workouts (user, content) values (?, ?)",
-                       (workout.user, workout.content))
+        cursor.execute("insert into workouts (content, user) values (?, ?)",
+                       (workout.content, workout.user))
 
         self._connection.commit()
 
@@ -22,7 +22,7 @@ class WorkoutRepository:
         cursor.execute("select * from workouts")
         workouts = cursor.fetchall()
 
-        return [Workout(workout["user"], workout["content"]) if workout
+        return [Workout(workout["content"], workout["user"]) if workout
                 else None for workout in workouts]
 
     def delete_all_workouts(self):

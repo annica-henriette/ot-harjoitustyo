@@ -12,7 +12,8 @@ class AppService:
         self._user_repository = user_rep
 
     def create_workout(self, content):
-        workout = Workout(content, user=self._user)
+        user = self._user
+        workout = Workout(content, user)
 
         return self._workout_repository.create(workout)
 
