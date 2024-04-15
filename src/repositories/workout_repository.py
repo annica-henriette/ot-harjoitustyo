@@ -25,6 +25,14 @@ class WorkoutRepository:
         return [Workout(workout["content"], workout["user"]) if workout
                 else None for workout in workouts]
 
+    def list_all_user_workouts(self, username):
+        cursor = self._connection.cursor()
+        cursor.execute("select * from workouts where user=?", (username))
+        user_workouts = cursor.fetchall()
+
+        return [Workout(workout["content"], workout["user"]) if workout
+                else None for workout in user_workouts]
+
     def delete_all_workouts(self):
         cursor = self._connection.cursor()
         cursor.execute("delete from workouts")

@@ -1,11 +1,14 @@
 import unittest
 from repositories.workout_repository import workout_repository
 from entities.workout import Workout
-
+from repositories.user_repository import user_repository
+from entities.user import User
 
 class TestWorkoutRepository(unittest.TestCase):
     def setUp(self):
         workout_repository.delete_all_workouts()
+        user_repository.delete_all__users()
+
         self.user = "tupu"
         self.content = "running"
         self.workout_running = Workout(self.content, self.user)
