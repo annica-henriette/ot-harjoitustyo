@@ -41,7 +41,12 @@ class AppService:
 
         return user
 
-# def list_all_users_workouts
+    def list_all_workouts(self):
+
+        workouts = self._workout_repository.list_all_workouts()
+
+        return workouts
+
 # def get_current_user
 # def get_all_users
 # def modify_workout
