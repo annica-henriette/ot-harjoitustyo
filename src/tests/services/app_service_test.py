@@ -45,8 +45,6 @@ class TestAppService(unittest.TestCase):
     def setUp(self):
         self.app_service = AppService(WorkoutRepositoryForTesting(), UserRepositoryForTesting())
 
-        self.workout_running = Workout("hupu", "running")
-        self.workout_gym = Workout("hupu", "gym")
         self.user_hupu = User("hupu", "123")
 
     def login_user(self, user):
@@ -55,12 +53,12 @@ class TestAppService(unittest.TestCase):
     def test_create_workout(self):
         self.login_user(self.user_hupu)
 
-        self.app_service.create_workout(self.workout_running)
+        self.app_service.create_workout("running")
         workouts = self.app_service.list_all_workouts()
 
         self.assertEqual(len(workouts), 1)
         self.assertEqual(workouts[0].content, "running")
-        self.assertEqual(woekouts[0].user.username, self.user_hupu.username)
+        self.assertEqual(workouts[0].user.username, self.user_hupu.username)
 
     def test_login(self):
         self.app_service.create_user(self.user_hupu.username, self.user_hupu.password)
