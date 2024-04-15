@@ -3,12 +3,7 @@ Sovelluksen tarkoitus on, ett채 k채ytt채j채 voi pit채채 kirjaa omista treeneist�
 
 ## Python-versio
 
-Sovelluksen toimintaa on testattu Python-versiolla 
-
-```bash
-3.10.12
-```
-.
+Sovelluksen toimintaa on testattu Python-versiolla 3.10.12.
 
 ## Dokumentaatio
 
