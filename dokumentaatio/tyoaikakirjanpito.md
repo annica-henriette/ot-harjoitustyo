@@ -17,3 +17,5 @@
 ## Viikko 4
 - Pylint-käyttöönotto 0,5 t
 - Arkkitehtuurikuvaus 1,0 t
+- Käyttäjän luonti graafisessa käyttöliittymässä 1,0 t
+- Ensimmäiset testit AppService-luokalle 1,5 t
