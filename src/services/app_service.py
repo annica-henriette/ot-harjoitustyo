@@ -3,11 +3,14 @@ from entities.user import User
 from repositories.user_repository import user_repository
 from repositories.workout_repository import workout_repository
 
+
 class UsernameTakenError(Exception):
     pass
 
+
 class InvalidLoginError(Exception):
     pass
+
 
 class AppService:
 
@@ -40,7 +43,8 @@ class AppService:
         taken_username = self._user_repository.find_one_user(username)
 
         if taken_username:
-            raise UsernameTakenError(f"Käyttäjätunnus {username} on jo käytössä")
+            raise UsernameTakenError(
+                f"Käyttäjätunnus {username} on jo käytössä")
 
         user = self._user_repository.create_user(User(username, password))
 

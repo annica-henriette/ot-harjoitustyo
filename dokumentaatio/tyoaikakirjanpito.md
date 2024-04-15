@@ -18,4 +18,6 @@
 - Pylint-käyttöönotto 0,5 t
 - Arkkitehtuurikuvaus 1,0 t
 - Käyttäjän luonti graafisessa käyttöliittymässä 1,0 t
-- Ensimmäiset testit AppService-luokalle 1,5 t
+- Ensimmäiset testit AppService-luokalle 2,5 t
+- Poikkeuksien ja virheiden hallinta ja niiden testaaminen 1,5 t
+- Graafisen käyttöliittymän toteutus 1,5 t

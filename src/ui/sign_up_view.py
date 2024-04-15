@@ -31,8 +31,12 @@ class SignUpView:
             self._error("Käyttäjätunnus tai salasana ei voi olla tyhjä")
             return
 
-        if len(password) < 3:
-            self._error("Salasanan täytyy olla vähintään kolme merkkiä")
+        if len(password) < 3 or len(password) > 30:
+            self._error("Salasanan tulee olla 3-30 merkkiä")
+            return
+
+        if len(username) > 20:
+            self._error("Käyttäjätunnus ei voi olla yli 20 merkkiä")
             return
 
         try:
@@ -95,8 +99,8 @@ class SignUpView:
         self._error_label = ttk.Label(
             master=self._frame,
             textvariable=self._error_message,
-            foreground = "black",
-            background = "red"
+            foreground="black",
+            background="red"
         )
 
         heading_label = ttk.Label(

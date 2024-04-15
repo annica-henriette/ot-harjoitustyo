@@ -88,7 +88,7 @@ class LoginView:
             master=self._frame,
             textvariable=self._error_message,
             foreground="black",
-            background = "red"
+            background="red"
         )
 
         self._error_label.grid(padx=3, pady=3)

@@ -7,3 +7,10 @@
 - Testattu, että yhden tietyn käyttäjän voi löytää
 - Treenin voi luoda
 - Testattu, että treenin voi luoda
+
+## Viikko 4
+
+- Käyttäjän voi luoda
+- Käyttäjä voi kirjautua sisään
+- Poikkeus nousee, jos kirjautumistiedot väärät tai käyttäjätunnus on jo olemassa
+- Testattu, että kirjautuminen onnistuu tai epäonnistuu
