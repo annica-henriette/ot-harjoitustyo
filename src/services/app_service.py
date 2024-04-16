@@ -64,6 +64,13 @@ class AppService:
     def get_all_users(self):
         return self._user_repository.find_all_users()
 
+    def get_user_workouts(self):
+        if not self._user:
+            return []
+
+        workouts = self._workout_repository.list_all_user_workouts(self._user.username)
+        return workouts
+
 # def modify_workout
 
 
