@@ -25,7 +25,7 @@ class WorkoutView:
 
     def _handle_create_workout(self):
         workout = self._create_workout.get()
-        username = self._user()
+        username = self._user.username
 
         if workout:
             app_service.create_workout(workout, username)
