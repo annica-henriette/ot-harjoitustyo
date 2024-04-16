@@ -23,6 +23,7 @@ class WorkoutView:
 
     def _logout_handler(self):
         app_service.logout()
+        self.destroy()
         self._handle_logout()
 
     def _handle_create_workout(self):
@@ -85,10 +86,13 @@ class WorkoutView:
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
+        self._workout_frame = ttk.Frame(master=self._frame)
 
         self._initialize_logout_button()
         self._initialize_workouts()
         self._initialize_create_workout_button()
+
+        self._workout_frame.grid(row=1, column=0, columnspan=2, sticky=constants.EW)
 
         self._frame.grid_columnconfigure(0, weight=1, minsize=400)
         self._frame.grid_columnconfigure(1, weight=0)
