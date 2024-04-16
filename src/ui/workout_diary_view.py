@@ -25,9 +25,10 @@ class WorkoutView:
 
     def _handle_create_workout(self):
         workout = self._create_workout.get()
+        username = self._user()
 
         if workout:
-            app_service.create_workout(workout)
+            app_service.create_workout(workout, username)
 
     def _initialize_create_workout_button(self):
         self._create_workout = ttk.Entry(master=self._frame)
