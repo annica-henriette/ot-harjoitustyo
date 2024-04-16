@@ -25,7 +25,9 @@ poetry install
 
 2. Vaadittavat alustustoimipiteet suoritetaan komennolla
 
-Kesken
+```bash
+poetry run invoke build
+```
 
 3. Sovellus käynnistetään komennolla
 
