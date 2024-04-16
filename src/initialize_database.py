@@ -16,14 +16,7 @@ def create_tables(connection):
         create table users (username text primary key, password text);
     ''')
 
-    cursor.execute('''
-        CREATE TABLE workouts (
-            workout_id INTEGER PRIMARY KEY AUTOINCREMENT,
-            content TEXT,
-            user TEXT,
-            FOREIGN KEY(user) REFERENCES users(username)
-        );
-    ''')
+    cursor.execute('''create table workouts (content text, user text);''')
 
     connection.commit()
 
