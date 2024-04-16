@@ -21,3 +21,5 @@
 - Ensimmäiset testit AppService-luokalle 2,5 t
 - Poikkeuksien ja virheiden hallinta ja niiden testaaminen 1,5 t
 - Graafisen käyttöliittymän toteutus 1,5 t
+- Graafinen käyttöliittymä - käyttäjän omat treenit 3 t
+- Yhteensä 11 tuntia

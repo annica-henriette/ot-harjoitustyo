@@ -12,11 +12,12 @@ Sovellukseen suunnitellaan toteutettavan sekä normaalit käyttäjät, että my�
 
 ## Suunnitellut toiminnallisuudet
 
-- Käyttäjä voi luoda käyttäjätunnuksen
-- Käyttäjä voi kirjautua järjestelmään
+- Käyttäjä voi luoda käyttäjätunnuksen (tehty)
+- Käyttäjä voi kirjautua järjestelmään (tehty)
 - Käyttäjä voi hallinnoida omia treenejä 
-	- Käyttäjä voi lisätä uuden treenin
+	- Käyttäjä voi lisätä uuden treenin (tehty)
 	- Käyttäjä voi poistaa treenin
 	- Käyttäjä voi muokata treeniä
-- Käyttäjä voi kirjautua ulos
+        - Käyttäjä näkee minä päivänä treeni on lisätty
+- Käyttäjä voi kirjautua ulos (tehty)
 

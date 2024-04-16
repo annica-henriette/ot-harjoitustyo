@@ -58,14 +58,14 @@ class WorkoutView:
         )
 
         self._create_workout.grid(
-            row=2, column=0, padx=3, pady=3, sticky=constants.EW)
+            row=2, column=0, padx=2, pady=2, sticky=constants.E)
 
         create_workout_button.grid(
             row=2,
             column=1,
-            padx=3,
-            pady=3,
-            sticky=constants.EW
+            padx=2,
+            pady=2,
+            sticky=constants.W
         )
 
     def _initialize_logout_button(self):
@@ -78,10 +78,10 @@ class WorkoutView:
 
         logout_button.grid(
             row=0,
-            column=0,
+            column=1,
             padx=2,
             pady=2,
-            sticky = constants.W
+            sticky=constants.E
         )
 
     def _initialize(self):
@@ -89,13 +89,19 @@ class WorkoutView:
         self._workout_frame = ttk.Frame(master=self._frame)
 
         self._initialize_logout_button()
+
+        user_name = ttk.Label(
+            master=self._frame, text=f"Tervetuloa {self._user.username}!", foreground="blue")
+        user_name.grid(row=0, column=0, padx=4, pady=4, sticky=constants.W)
+
         self._initialize_workouts()
         self._initialize_create_workout_button()
 
-        self._workout_frame.grid(row=1, column=0, columnspan=2, sticky=constants.EW)
+        self._workout_frame.grid(row=1, column=0, sticky=constants.W)
 
         self._frame.grid_columnconfigure(0, weight=1, minsize=400)
         self._frame.grid_columnconfigure(1, weight=0)
+
 
 class WorkoutListView:
     def __init__(self, root, workouts):

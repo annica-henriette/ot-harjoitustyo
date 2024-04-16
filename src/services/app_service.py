@@ -68,7 +68,8 @@ class AppService:
         if not self._user:
             return []
 
-        workouts = self._workout_repository.list_all_user_workouts(self._user.username)
+        workouts = self._workout_repository.list_all_user_workouts(
+            self._user.username)
         return workouts
 
 # def modify_workout
