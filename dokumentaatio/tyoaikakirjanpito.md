@@ -22,4 +22,5 @@
 - Poikkeuksien ja virheiden hallinta ja niiden testaaminen 1,5 t
 - Graafisen käyttöliittymän toteutus 1,5 t
 - Graafinen käyttöliittymä - käyttäjän omat treenit 3 t
-- Yhteensä 11 tuntia
+- build-tiedosto ja riippuvuuksien hallinta 1.0 t
+- Yhteensä 12 tuntia
