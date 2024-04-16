@@ -1,6 +1,5 @@
 from database_connection import get_database_connection
 
-
 def drop_tables(connection):
     cursor = connection.cursor()
 
@@ -16,8 +15,14 @@ def create_tables(connection):
     cursor.execute('''
         create table users (username text primary key, password text);
     ''')
+
     cursor.execute('''
-        create table workouts (user text, content text);
+        CREATE TABLE workouts (
+            workout_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            content TEXT,
+            user TEXT,
+            FOREIGN KEY(user) REFERENCES users(username)
+        );
     ''')
 
     connection.commit()
@@ -28,7 +33,6 @@ def initialize_database():
 
     drop_tables(connection)
     create_tables(connection)
-
 
 if __name__ == "__main__":
     initialize_database()

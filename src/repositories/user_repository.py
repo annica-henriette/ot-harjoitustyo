@@ -37,8 +37,8 @@ class UserRepository:
 
         if user:
             return User(user["username"], user["password"])
-        else:
-            return None
+
+        return None
 
 
 user_repository = UserRepository(get_database_connection())
