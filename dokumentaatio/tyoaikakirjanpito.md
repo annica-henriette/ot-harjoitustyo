@@ -26,5 +26,7 @@
 - Yhteensä 12 tuntia
 
 ## Viikko 5
-- Päivämäärän lisäys treeniin 2,0 t
+- Päivämäärän lisäys treeniin 1,5 t
 - Dokumentaatio ja arkkitehtuurikuvaus 1,0 t
+- Testien laadinta ja testikattavuus 1,5 t
+- Yhteensä 4 tuntia
