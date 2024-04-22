@@ -15,3 +15,6 @@
 - Poikkeus nousee, jos kirjautumistiedot väärät tai käyttäjätunnus on jo olemassa
 - Testattu, että kirjautuminen onnistuu tai epäonnistuu
 - Kirjautunut käyttäjä voi luoda treenin ja näkee omat treenit
+
+## Viikko 5
+- Käyttäjä voi lisätä treenille päivämäärän

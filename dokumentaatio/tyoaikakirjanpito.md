@@ -24,3 +24,6 @@
 - Graafinen käyttöliittymä - käyttäjän omat treenit 3 t
 - build-tiedosto ja riippuvuuksien hallinta 1.0 t
 - Yhteensä 12 tuntia
+
+## Viikko 5
+- Päivämäärän lisäys treeniin 2,0 t

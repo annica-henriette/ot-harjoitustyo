@@ -35,3 +35,31 @@ AppService pääsee käsiksi luokkiin User ja Workout luokkien [WorkoutRepositor
        UserRepository ..> User
        WorkoutRepository ..> Workout
 ```
+
+## Sovelluksen päätoiminnallisuudet
+
+Sovelluksen päätoiminnallisuudet voi kuvata seuraavien sekvenssikaavioiden avulla.
+
+### Käyttäjän luominen
+
+Käyttäjän luomiseen tarvitaan syötteenä käyttäjätunnus, joka ei ole jo käytössä, ja salasana. Tämä jälkeen klikataan "Luo käyttäjä"-painiketta.
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant UI
+    participant AppService
+    participant UserRepository
+    participant teemu
+    User->>UI: click "Luo käyttäjä" button
+    UI->>AppService: create_user("teemu", "123")
+    AppService->>UserRepository: find_one_user("teemu")
+    UserRepository-->>AppService: None
+    AppService->>teemu: User("teemu", "123")
+    AppService->>UserRepository: create_user(teemu)
+    UserRepository-->>AppService: user
+    AppService-->>UI: user
+    UI->>UI: show_workout_view()
+```
+
+### Sisäänkirjautuminen
