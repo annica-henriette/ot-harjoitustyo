@@ -29,6 +29,8 @@ class WorkoutView:
 
     def _logout_handler(self):
         app_service.logout()
+        if self._delete_view:
+            self._delete_view.destroy()
         self.destroy()
         self._handle_logout()
 
@@ -41,6 +43,8 @@ class WorkoutView:
             try:
                 app_service.create_workout(workout, date, username)
                 self._initialize_workouts()
+                if self._delete_view:
+                    self._delete_view.destroy()
                 self._create_workout.delete(0, constants.END)
                 self._create_workout_date.delete(0, constants.END)
             except InvalidDate as error:
@@ -49,11 +53,18 @@ class WorkoutView:
                 self._error(str(error))
 
     def _handle_delete_workout(self):
-        if self._delete_view:
+
+        # generoitu koodi alkaa
+
+        def handle_delete_return():
+            self._initialize_workouts()
             self._delete_view.destroy()
+
+        # generoitu koodi päättyy
 
         self._delete_view = WorkoutDeleteView(
             self._delete_frame,
+            handle_delete_return # generoitu metodi
         )
 
         self._delete_view.pack()
@@ -203,10 +214,12 @@ class WorkoutListView:
             self._initialize_workout(workout)
 
 class WorkoutDeleteView:
-    def __init__(self, root):
-
+    def __init__(self, root, delete_return):
         self._root = root
         self._frame = None
+        self._delete_return = delete_return
+        self._error_message = None
+        self._error_label = None
 
         self._initialize()
 
@@ -216,14 +229,36 @@ class WorkoutDeleteView:
     def destroy(self):
         self._frame.destroy()
 
+    def _error(self, message):
+        self._error_message.set(message)
+        self._error_label.grid()
+
+    def _hide_error(self):
+        self._error_label.grid_remove()
+
     def _handle_delete_workout(self):
         workout = self._create_workout.get()
         date = self._create_workout_date.get()
         if workout and date:
-            app_service.delete_one_workout(workout, date)
+            try:
+                app_service.delete_one_workout(workout, date)
+                self._delete_return()
+            except InvalidDate as error:
+                self._error(str(error))
 
     def _initialize(self):
         self._frame = ttk.Frame(master = self._root)
+
+        self._error_message = StringVar(self._frame)
+
+        self._error_label = ttk.Label(
+            master=self._frame,
+            textvariable=self._error_message,
+            foreground="black",
+            background="red"
+        )
+
+        self._error_label.grid(row=4, column=0, padx=3, pady=3)
 
         content_label = ttk.Label(
             master=self._frame, text="Minkä treenin haluat poistaa?")
@@ -247,3 +282,5 @@ class WorkoutDeleteView:
         self._create_workout.grid(row=1, column=1, padx=4, pady=4, sticky=constants.W)
         self._create_workout_date.grid(row=2, column=1, padx=4, pady=4, sticky=constants.W)
         delete_workout_button.grid(row=3, column=0, padx=4, pady=4, sticky=constants.W)
+
+        self._hide_error()

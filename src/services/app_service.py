@@ -95,6 +95,13 @@ class AppService:
         return workouts
 
     def delete_one_workout(self, content, date):
+
+        try:
+            datetime.strptime(date, '%Y-%m-%d')
+        except ValueError as exception:
+            raise InvalidDate(
+                "Päivämäärä väärässä muodossa. Käytä muotoa YYYY-MM-DD") from exception
+
         self._workout_repository.delete_one_workout(self._user.username, content, date)
 
         workouts = self._workout_repository.list_all_user_workouts(
