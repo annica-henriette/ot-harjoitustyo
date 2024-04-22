@@ -1,5 +1,5 @@
 from tkinter import ttk, StringVar, constants
-from services.app_service import app_service, InvalidDate
+from services.app_service import app_service, InvalidDate, DuplicateWorkoutError
 from datetime import datetime
 
 class WorkoutView:
@@ -39,7 +39,10 @@ class WorkoutView:
                 app_service.create_workout(workout, date, username)
                 self._initialize_workouts()
                 self._create_workout.delete(0, constants.END)
+                self._create_workout_date.delete(0, constants.END)
             except InvalidDate as error:
+                self._error(str(error))
+            except DuplicateWorkoutError as error:
                 self._error(str(error))
 
     def _error(self, message):

@@ -44,6 +44,7 @@ class WorkoutRepository:
         cursor.execute("delete * from workouts where user = ? and content = ? and date = ?", (username, content, date))
 
         self._connection.commit()
+
 # def modify_workout()
 
 

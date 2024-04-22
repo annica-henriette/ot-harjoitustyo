@@ -27,3 +27,4 @@
 
 ## Viikko 5
 - Päivämäärän lisäys treeniin 2,0 t
+- Dokumentaatio ja arkkitehtuurikuvaus 1,0 t

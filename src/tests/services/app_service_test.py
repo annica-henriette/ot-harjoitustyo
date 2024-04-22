@@ -2,7 +2,7 @@ import unittest
 from entities.workout import Workout
 from entities.user import User
 from services.app_service import (
-    AppService, InvalidLoginError, UsernameTakenError)
+    AppService, InvalidLoginError, UsernameTakenError, InvalidDate, DuplicateWorkoutError)
 
 
 class WorkoutRepositoryForTesting:
@@ -20,6 +20,8 @@ class WorkoutRepositoryForTesting:
     def delete_all_workouts(self):
         self.workouts = []
 
+    def list_all_user_workouts(self, user):
+        return [workout for workout in self.workouts if workout.user == user]
 
 class UserRepositoryForTesting:
     def __init__(self, users=None):
@@ -59,11 +61,12 @@ class TestAppService(unittest.TestCase):
         user = self.user_hupu
 
         self.app_service.create_workout("running", "2024-04-24", user.username)
+
         workouts = self.app_service.list_all_workouts()
 
         self.assertEqual(len(workouts), 1)
         self.assertEqual(workouts[0].content, "running")
-        self.assertEqual(workouts[0].user, self.user_hupu.username)
+        self.assertEqual(workouts[0].user, user.username)
         self.assertEqual(workouts[0].date, "2024-04-24")
 
     def test_login_valid(self):
@@ -78,3 +81,15 @@ class TestAppService(unittest.TestCase):
     def test_login_invalid(self):
         self.assertRaises(InvalidLoginError,
                           lambda: self.app_service.login("test", ""))
+
+    def test_create_workout_invalid_date(self):
+        user = self.user_hupu
+
+        self.assertRaises(InvalidDate, lambda: self.app_service.create_workout("running", "12.01.2024", user.username))
+
+    def test_create_workout_duplicate(self):
+        user = self.user_hupu
+
+        self.app_service.create_workout("running", "2024-04-24", user.username)
+
+        self.assertRaises(DuplicateWorkoutError, lambda: self.app_service.create_workout("running", "2024-04-24", user.username))
