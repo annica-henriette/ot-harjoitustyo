@@ -1,5 +1,5 @@
 from tkinter import ttk, StringVar, constants
-from services.app_service import app_service
+from services.app_service import app_service, InvalidDate
 from datetime import datetime
 
 class WorkoutView:
@@ -13,6 +13,8 @@ class WorkoutView:
         self._create_workout_date = None
         self._workout_frame = None
         self._workout_view = None
+        self._error_message = None
+        self._error_label = None
 
         self._initialize()
 
@@ -33,9 +35,19 @@ class WorkoutView:
         username = self._user.username
 
         if workout and date:
-            app_service.create_workout(workout, date, username)
-            self._initialize_workouts()
-            self._create_workout.delete(0, constants.END)
+            try:
+                app_service.create_workout(workout, date, username)
+                self._initialize_workouts()
+                self._create_workout.delete(0, constants.END)
+            except InvalidDate as error:
+                self._error(str(error))
+
+    def _error(self, message):
+        self._error_message.set(message)
+        self._error_label.grid()
+
+    def _hide_error(self):
+        self._error_label.grid_remove()
 
     def _initialize_workouts(self):
         if self._workout_view:
@@ -52,7 +64,7 @@ class WorkoutView:
 
     def _initialize_create_workout_button(self):
         content_label = ttk.Label(master=self._frame, text="Treenin sisältö:")
-        date_label = ttk.Label(master=self._frame, text="Päivämäärä:")
+        date_label = ttk.Label(master=self._frame, text="Päivämäärä (YYYY-MM-DD):")
 
         self._create_workout = ttk.Entry(master=self._frame)
         self._create_workout_date = ttk.Entry(master=self._frame)
@@ -98,6 +110,17 @@ class WorkoutView:
         self._frame = ttk.Frame(master=self._root)
         self._workout_frame = ttk.Frame(master=self._frame)
 
+        self._error_message = StringVar(self._frame)
+
+        self._error_label = ttk.Label(
+            master=self._frame,
+            textvariable=self._error_message,
+            foreground="black",
+            background="red"
+        )
+
+        self._error_label.grid(row=4, column=0, padx=3, pady=3)
+
         self._initialize_logout_button()
 
         user_name = ttk.Label(
@@ -112,6 +135,7 @@ class WorkoutView:
         self._frame.grid_columnconfigure(0, weight=1, minsize=400)
         self._frame.grid_columnconfigure(1, weight=0)
 
+        self._hide_error()
 
 class WorkoutListView:
     def __init__(self, root, workouts):

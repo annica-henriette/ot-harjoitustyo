@@ -2,13 +2,16 @@ from entities.workout import Workout
 from entities.user import User
 from repositories.user_repository import user_repository
 from repositories.workout_repository import workout_repository
-
+from datetime import datetime
 
 class UsernameTakenError(Exception):
     pass
 
 
 class InvalidLoginError(Exception):
+    pass
+
+class InvalidDate(Exception):
     pass
 
 
@@ -20,8 +23,13 @@ class AppService:
         self._user_repository = user_rep
 
     def create_workout(self, content, date, user):
-        workout = Workout(content, date, user)
 
+        try:
+            datetime.strptime(date, '%Y-%m-%d')
+        except ValueError:
+            raise InvalidDate("Päivämäärä väärässä muodossa. Käytä muotoa YYYY-MM-DD")
+
+        workout = Workout(content, date, user)
         return self._workout_repository.create_workout(workout)
 
     def login(self, username, password):
