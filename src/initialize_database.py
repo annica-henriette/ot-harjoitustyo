@@ -17,7 +17,8 @@ def create_tables(connection):
         create table users (username text primary key, password text);
     ''')
 
-    cursor.execute('''create table workouts (content text, date text, user text);''')
+    cursor.execute(
+        '''create table workouts (content text, date text, user text);''')
 
     connection.commit()
 

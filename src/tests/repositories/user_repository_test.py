@@ -39,6 +39,10 @@ class TestUserRepository(unittest.TestCase):
         self.assertEqual(users[1].username, self.user_tupu.username)
 
     def test_find_one_user(self):
+        user = user_repository.find_one_user(self.user_hupu.username)
+
+        self.assertEqual(user, None)
+
         user_repository.create_user(self.user_hupu)
 
         user = user_repository.find_one_user(self.user_hupu.username)

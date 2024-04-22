@@ -2,6 +2,7 @@ from tkinter import ttk, StringVar, constants
 from services.app_service import app_service, InvalidDate, DuplicateWorkoutError
 from datetime import datetime
 
+
 class WorkoutView:
 
     def __init__(self, root, handle_logout):
@@ -67,7 +68,8 @@ class WorkoutView:
 
     def _initialize_create_workout_button(self):
         content_label = ttk.Label(master=self._frame, text="Treenin sisältö:")
-        date_label = ttk.Label(master=self._frame, text="Päivämäärä (YYYY-MM-DD):")
+        date_label = ttk.Label(
+            master=self._frame, text="Päivämäärä (YYYY-MM-DD):")
 
         self._create_workout = ttk.Entry(master=self._frame)
         self._create_workout_date = ttk.Entry(master=self._frame)
@@ -83,7 +85,8 @@ class WorkoutView:
 
         self._create_workout.grid(
             row=2, column=2, padx=2, pady=2, sticky=constants.W)
-        self._create_workout_date.grid(row=3, column=2, padx=2, pady=2, sticky=constants.W)
+        self._create_workout_date.grid(
+            row=3, column=2, padx=2, pady=2, sticky=constants.W)
 
         create_workout_button.grid(
             row=4,
@@ -140,6 +143,7 @@ class WorkoutView:
 
         self._hide_error()
 
+
 class WorkoutListView:
     def __init__(self, root, workouts):
 
@@ -157,7 +161,8 @@ class WorkoutListView:
 
     def _initialize_workout(self, workout):
         workout_frame = ttk.Frame(master=self._frame)
-        workout_label = ttk.Label(master=workout_frame, text=f"{workout.date}: {workout.content}")
+        workout_label = ttk.Label(
+            master=workout_frame, text=f"{workout.date}: {workout.content}")
 
         workout_label.grid(row=0, column=0, padx=3, pady=3)
 

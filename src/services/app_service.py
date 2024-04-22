@@ -4,17 +4,22 @@ from repositories.user_repository import user_repository
 from repositories.workout_repository import workout_repository
 from datetime import datetime
 
+
 class UsernameTakenError(Exception):
     pass
+
 
 class InvalidLoginError(Exception):
     pass
 
+
 class InvalidDate(Exception):
     pass
 
+
 class DuplicateWorkoutError(Exception):
     pass
+
 
 class AppService:
 
@@ -28,13 +33,15 @@ class AppService:
         try:
             datetime.strptime(date, '%Y-%m-%d')
         except ValueError:
-            raise InvalidDate("Päivämäärä väärässä muodossa. Käytä muotoa YYYY-MM-DD")
+            raise InvalidDate(
+                "Päivämäärä väärässä muodossa. Käytä muotoa YYYY-MM-DD")
 
         workouts = self._workout_repository.list_all_user_workouts(user)
 
         for existing_workout in workouts:
             if existing_workout.content == content and existing_workout.date == date:
-                raise DuplicateWorkoutError("Tällä sisällöllä ja päivämäärällä on jo olemassa treeni")
+                raise DuplicateWorkoutError(
+                    "Tällä sisällöllä ja päivämäärällä on jo olemassa treeni")
 
         workout = Workout(content, date, user)
         return self._workout_repository.create_workout(workout)
