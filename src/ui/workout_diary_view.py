@@ -39,7 +39,7 @@ class WorkoutView:
         date = self._create_workout_date.get()
         username = self._user.username
 
-        if workout and date:
+        if workout.strip() and date:
             try:
                 app_service.create_workout(workout, date, username)
                 self._initialize_workouts()
@@ -47,6 +47,7 @@ class WorkoutView:
                     self._delete_view.destroy()
                 self._create_workout.delete(0, constants.END)
                 self._create_workout_date.delete(0, constants.END)
+                self._hide_error()
             except InvalidDate as error:
                 self._error(str(error))
             except DuplicateWorkoutError as error:
