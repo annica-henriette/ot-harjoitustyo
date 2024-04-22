@@ -62,6 +62,8 @@ sequenceDiagram
     UI->>UI: show_workout_view()
 ```
 
+Painikkeen painamisen jälkeen sovelluslogiikan `AppService` selvittää käyttäjätunnuksen ja `UserRepository`:n avulla onko käyttäjätunnus jo olemassa. Jos ei ole, sovelluslogiikka luo `User` -olion ja tallentaa sen `UserRepository`:n `create_user` metodin avulla. Käyttäjä on luotu ja näkymäksi vaihtuu kirjautuneen käyttäjän treenipäiväkirja. 
+
 ### Sisäänkirjautuminen
 
 Käyttäjä voi kirjautua sovellukseen kirjoittamalla käyttäjätunnuksen ja salasanan syötekenttiin ja klikkaamalla painiketta "Kirjaudu".
@@ -80,4 +82,4 @@ sequenceDiagram
     UI->UI: show_workout_view()
 ```
 
-Painikkeen painamisen jälkeen sovelluslogiikan metodi, käyttäjätunnuksen ja salasanan avulla, selvittää `UserRepository`:n avulla onko käyttäjätunnus jo olemassa. Jos käyttäjätunnus on olemassa ja salasanat täsmäävät, kirjautuminen onnistuu ja käyttöliittymä avaa sovelluksen varsinaisen päänäkymän, eli kirjautuneen käyttäjän treeninäkymän.
+Painikkeen painamisen jälkeen sovelluslogiikan `AppService` metodi, käyttäjätunnuksen ja salasanan avulla, selvittää `UserRepository`:n avulla onko käyttäjätunnus jo olemassa. Jos käyttäjätunnus on olemassa ja salasanat täsmäävät, kirjautuminen onnistuu ja käyttöliittymä avaa sovelluksen varsinaisen päänäkymän, eli kirjautuneen käyttäjän treeninäkymän.
