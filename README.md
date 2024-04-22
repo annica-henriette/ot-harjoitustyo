@@ -1,5 +1,5 @@
-# Workout App
-Sovelluksen tarkoitus on, että käyttäjä voi pitää kirjaa omista treeneistä ja hallinnoida niitä.
+# Treenipäiväkirja
+Sovelluksen tarkoitus on, että käyttäjä voi kirjautua sisään ja pitää kirjaa omista treeneistä ja hallinnoida niitä.
 
 ## Python-versio
 
