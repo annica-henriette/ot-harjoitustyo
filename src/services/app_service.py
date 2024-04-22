@@ -20,8 +20,10 @@ class InvalidDate(Exception):
 class DuplicateWorkoutError(Exception):
     pass
 
+
 class NoSuchWorkoutError(Exception):
     pass
+
 
 class AppService:
 
@@ -109,12 +111,14 @@ class AppService:
         found_workout = False
         for workout in user_workouts:
             if workout.content == content and workout.date == date:
-                self._workout_repository.delete_one_workout(self._user.username, content, date)
+                self._workout_repository.delete_one_workout(
+                    self._user.username, content, date)
                 found_workout = True
                 break
 
         if not found_workout:
-            raise NoSuchWorkoutError("Treeniä ei löydy annetulla sisällöllä ja päivämäärällä")
+            raise NoSuchWorkoutError(
+                "Treeniä ei löydy annetulla sisällöllä ja päivämäärällä")
 
 # def modify_workout
 

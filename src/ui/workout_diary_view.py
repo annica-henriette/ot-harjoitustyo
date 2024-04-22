@@ -67,7 +67,7 @@ class WorkoutView:
 
         self._delete_view = WorkoutDeleteView(
             self._delete_frame,
-            handle_delete_return # generoitu metodi
+            handle_delete_return  # generoitu metodi
         )
 
         self._delete_view.pack()
@@ -125,8 +125,8 @@ class WorkoutView:
     def _initialize_delete_workout_button(self):
         delete_workout_button = ttk.Button(
             master=self._frame,
-            text= "Poista treeni",
-            command = self._handle_delete_workout
+            text="Poista treeni",
+            command=self._handle_delete_workout
         )
         delete_workout_button.grid(
             row=5,
@@ -216,6 +216,7 @@ class WorkoutListView:
         for workout in self._workouts:
             self._initialize_workout(workout)
 
+
 class WorkoutDeleteView:
     def __init__(self, root, delete_return):
         self._root = root
@@ -252,7 +253,7 @@ class WorkoutDeleteView:
                 self._error(str(error))
 
     def _initialize(self):
-        self._frame = ttk.Frame(master = self._root)
+        self._frame = ttk.Frame(master=self._root)
 
         self._error_message = StringVar(self._frame)
 
@@ -284,8 +285,11 @@ class WorkoutDeleteView:
 
         workout_label.grid(row=1, column=0, padx=4, pady=4, sticky=constants.W)
         date_label.grid(row=2, column=0, padx=4, pady=4, sticky=constants.W)
-        self._create_workout.grid(row=1, column=1, padx=4, pady=4, sticky=constants.W)
-        self._create_workout_date.grid(row=2, column=1, padx=4, pady=4, sticky=constants.W)
-        delete_workout_button.grid(row=3, column=0, padx=4, pady=4, sticky=constants.W)
+        self._create_workout.grid(
+            row=1, column=1, padx=4, pady=4, sticky=constants.W)
+        self._create_workout_date.grid(
+            row=2, column=1, padx=4, pady=4, sticky=constants.W)
+        delete_workout_button.grid(
+            row=3, column=0, padx=4, pady=4, sticky=constants.W)
 
         self._hide_error()

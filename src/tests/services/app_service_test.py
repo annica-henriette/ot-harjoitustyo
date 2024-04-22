@@ -2,7 +2,7 @@ import unittest
 from entities.workout import Workout
 from entities.user import User
 from services.app_service import (
-    AppService, InvalidLoginError, UsernameTakenError, InvalidDate, DuplicateWorkoutError)
+    AppService, InvalidLoginError, UsernameTakenError, InvalidDate, DuplicateWorkoutError, NoSuchWorkoutError)
 
 
 class WorkoutRepositoryForTesting:
@@ -23,6 +23,11 @@ class WorkoutRepositoryForTesting:
     def list_all_user_workouts(self, user):
         return [workout for workout in self.workouts if workout.user == user]
 
+    def delete_one_workout(self, user, content, date):
+        for workout in self.workouts:
+            if workout.user == user and workout.content == content and workout.date == date:
+                self.workouts.remove(workout)
+                return
 
 class UserRepositoryForTesting:
     def __init__(self, users=None):
@@ -169,3 +174,32 @@ class TestAppService(unittest.TestCase):
 
         self.assertEqual(len(workouts), 2)
         self.assertEqual(workouts[0].user, self.user_hupu.username)
+
+    def test_delete_one_workout(self):
+        self.login_user(self.user_hupu)
+        user = self.user_hupu
+
+        self.app_service.create_workout("running", "2024-04-24", user.username)
+        self.app_service.create_workout("gym", "2024-04-22", user.username)
+
+        self.app_service.delete_one_workout("running", "2024-04-24")
+        workouts = self.app_service.get_user_workouts()
+
+        self.assertEqual(len(workouts), 1)
+        self.assertEqual(workouts[0].content, "gym")
+        self.assertEqual(workouts[0].user, user.username)
+        self.assertEqual(workouts[0].date, "2024-04-22")
+
+    def test_delete_one_workout_invalid_date(self):
+        user = self.user_hupu
+
+        self.assertRaises(InvalidDate, lambda: self.app_service.delete_one_workout(
+            "running", "12.01.2024"))
+
+    def test_workout_not_found(self):
+        self.login_user(self.user_hupu)
+        user = self.user_hupu
+
+        self.app_service.create_workout("running", "2024-04-24", user.username)
+
+        self.assertRaises(NoSuchWorkoutError, lambda: self.app_service.delete_one_workout("gym", "2024-04-24"))
