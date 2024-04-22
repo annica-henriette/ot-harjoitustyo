@@ -58,12 +58,13 @@ class TestAppService(unittest.TestCase):
     def test_create_workout(self):
         user = self.user_hupu
 
-        self.app_service.create_workout("running", user.username)
+        self.app_service.create_workout("running", "2024-04-24", user.username)
         workouts = self.app_service.list_all_workouts()
 
         self.assertEqual(len(workouts), 1)
         self.assertEqual(workouts[0].content, "running")
         self.assertEqual(workouts[0].user, self.user_hupu.username)
+        self.assertEqual(workouts[0].date, "2024-04-24")
 
     def test_login_valid(self):
         self.app_service.create_user(
