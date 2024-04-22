@@ -1,5 +1,4 @@
 from entities.workout import Workout
-from repositories.user_repository import user_repository
 from database_connection import get_database_connection
 
 
@@ -42,7 +41,8 @@ class WorkoutRepository:
     def delete_one_workout(self, username, content, date):
         cursor = self._connection.cursor()
         cursor.execute(
-            "delete from workouts where user = ? and content = ? and date = ?", (username, content, date))
+            "delete from workouts where user = ? and content = ? and date = ?",
+            (username, content, date))
 
         self._connection.commit()
 

@@ -90,7 +90,8 @@ class TestAppService(unittest.TestCase):
 
         self.app_service.create_user(username, "123123")
 
-        self.assertRaises(UsernameTakenError, lambda: self.app_service.create_user(username, "password"))
+        self.assertRaises(
+            UsernameTakenError, lambda: self.app_service.create_user(username, "password"))
 
     def login_user(self, user):
         self.app_service.create_user(user.username, user.password)
@@ -159,8 +160,10 @@ class TestAppService(unittest.TestCase):
 
         self.login_user(self.user_hupu)
 
-        self.app_service.create_workout("running", "2024-04-24", self.user_hupu.username)
-        self.app_service.create_workout("gym", "2024-04-24", self.user_hupu.username)
+        self.app_service.create_workout(
+            "running", "2024-04-24", self.user_hupu.username)
+        self.app_service.create_workout(
+            "gym", "2024-04-24", self.user_hupu.username)
 
         workouts = self.app_service.get_user_workouts()
 

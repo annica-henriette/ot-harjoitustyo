@@ -164,7 +164,7 @@ class WorkoutListView:
         workout_label = ttk.Label(
             master=workout_frame, text=f"{workout.date}: {workout.content}")
 
-        workout_label.grid(row=0, column=0, padx=3, pady=3)
+        workout_label.grid(row=0, column=0, padx=3, pady=3, sticky=constants.W)
 
         workout_frame.grid_columnconfigure(0, weight=1)
         workout_frame.pack(fill=constants.X)

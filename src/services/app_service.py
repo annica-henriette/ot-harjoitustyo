@@ -1,8 +1,8 @@
+from datetime import datetime
 from entities.workout import Workout
 from entities.user import User
 from repositories.user_repository import user_repository
 from repositories.workout_repository import workout_repository
-from datetime import datetime
 
 
 class UsernameTakenError(Exception):
@@ -32,9 +32,9 @@ class AppService:
 
         try:
             datetime.strptime(date, '%Y-%m-%d')
-        except ValueError:
+        except ValueError as exception:
             raise InvalidDate(
-                "Päivämäärä väärässä muodossa. Käytä muotoa YYYY-MM-DD")
+                "Päivämäärä väärässä muodossa. Käytä muotoa YYYY-MM-DD") from exception
 
         workouts = self._workout_repository.list_all_user_workouts(user)
 
