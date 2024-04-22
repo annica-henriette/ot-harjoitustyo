@@ -63,3 +63,21 @@ sequenceDiagram
 ```
 
 ### Sisäänkirjautuminen
+
+Käyttäjä voi kirjautua sovellukseen kirjoittamalla käyttäjätunnuksen ja salasanan syötekenttiin ja klikkaamalla painiketta "Kirjaudu".
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant UI
+    participant AppService
+    participant UserRepository
+    User->>UI: click "Kirjaudu" button
+    UI->>AppService: login("teemu", "123")
+    AppService->>UserRepository: find_one_user("teemu")
+    UserRepository-->>AppService: user
+    AppService-->>UI: user
+    UI->UI: show_workout_view()
+```
+
+Painikkeen painamisen jälkeen sovelluslogiikan metodi, käyttäjätunnuksen ja salasanan avulla, selvittää `UserRepository`:n avulla onko käyttäjätunnus jo olemassa. Jos käyttäjätunnus on olemassa ja salasanat täsmäävät, kirjautuminen onnistuu ja käyttöliittymä avaa sovelluksen varsinaisen päänäkymän, eli kirjautuneen käyttäjän treeninäkymän.
