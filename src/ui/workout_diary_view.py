@@ -53,6 +53,8 @@ class WorkoutView:
                 self._error(str(error))
 
     def _handle_delete_workout(self):
+        if self._delete_view:
+            self._delete_view.destroy()
 
         # generoitu koodi alkaa
 
