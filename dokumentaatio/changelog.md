@@ -17,4 +17,7 @@
 - Kirjautunut käyttäjä voi luoda treenin ja näkee omat treenit
 
 ## Viikko 5
-- Käyttäjä voi lisätä treenille päivämäärän
+- Käyttäjä voi lisätä treenille päivämäärän oikeassa muodossa
+- Käyttäjä voi poistaa treenin
+- Testattu, että päivämäärän voi lisätä ja, että poikkeus nousee, jos päivämäärä väärässä muodossa
+- Testattu, että treenin voi poistaa ja, että poikkeus nousee, jos käyttäjällä ei ole ensin lisännyt kyseistä treeniä

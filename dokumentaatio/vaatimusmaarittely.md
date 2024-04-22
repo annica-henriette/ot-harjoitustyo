@@ -16,7 +16,7 @@ Sovellukseen suunnitellaan toteutettavan sekä normaalit käyttäjät, että my�
 - Käyttäjä voi kirjautua järjestelmään (tehty)
 - Käyttäjä voi hallinnoida omia treenejä 
 	- Käyttäjä voi lisätä uuden treenin (tehty)
-	- Käyttäjä voi poistaa treenin
+	- Käyttäjä voi poistaa treenin (tehty)
 	- Käyttäjä voi muokata treeniä
         - Käyttäjä lisää treenille päivämäärän (tehty)
 - Käyttäjä voi kirjautua ulos (tehty)

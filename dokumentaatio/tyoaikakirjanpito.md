@@ -29,4 +29,5 @@
 - Päivämäärän lisäys treeniin 1,5 t
 - Dokumentaatio ja arkkitehtuurikuvaus 1,0 t
 - Testien laadinta ja testikattavuus 1,5 t
-- Yhteensä 4 tuntia
+- Käyttäjä voi poistaa treenin 3,0 t
+- Yhteensä 7 tuntia
