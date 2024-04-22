@@ -94,6 +94,15 @@ class AppService:
             self._user.username)
         return workouts
 
+    def delete_one_workout(self, content, date):
+        self._workout_repository.delete_one_workout(self._user.username, content, date)
+
+        workouts = self._workout_repository.list_all_user_workouts(
+            self._user.username)
+
+        return workouts
+
+
 # def modify_workout
 
 

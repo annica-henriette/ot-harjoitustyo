@@ -16,6 +16,8 @@ class WorkoutView:
         self._workout_view = None
         self._error_message = None
         self._error_label = None
+        self._delete_frame = None
+        self._delete_view = None
 
         self._initialize()
 
@@ -45,6 +47,16 @@ class WorkoutView:
                 self._error(str(error))
             except DuplicateWorkoutError as error:
                 self._error(str(error))
+
+    def _handle_delete_workout(self):
+        if self._delete_view:
+            self._delete_view.destroy()
+
+        self._delete_view = WorkoutDeleteView(
+            self._delete_frame,
+        )
+
+        self._delete_view.pack()
 
     def _error(self, message):
         self._error_message.set(message)
@@ -96,6 +108,20 @@ class WorkoutView:
             sticky=constants.W
         )
 
+    def _initialize_delete_workout_button(self):
+        delete_workout_button = ttk.Button(
+            master=self._frame,
+            text= "Poista treeni",
+            command = self._handle_delete_workout
+        )
+        delete_workout_button.grid(
+            row=5,
+            column=2,
+            padx=2,
+            pady=2,
+            sticky=constants.W
+        )
+
     def _initialize_logout_button(self):
 
         logout_button = ttk.Button(
@@ -135,6 +161,7 @@ class WorkoutView:
 
         self._initialize_workouts()
         self._initialize_create_workout_button()
+        self._initialize_delete_workout_button()
 
         self._workout_frame.grid(row=1, column=0, sticky=constants.W)
 
@@ -174,3 +201,49 @@ class WorkoutListView:
 
         for workout in self._workouts:
             self._initialize_workout(workout)
+
+class WorkoutDeleteView:
+    def __init__(self, root):
+
+        self._root = root
+        self._frame = None
+
+        self._initialize()
+
+    def pack(self):
+        self._frame.pack(fill=constants.X)
+
+    def destroy(self):
+        self._frame.destroy()
+
+    def _handle_delete_workout(self):
+        workout = self._create_workout.get()
+        date = self._create_workout_date.get()
+        if workout and date:
+            app_service.delete_one_workout(workout, date)
+
+    def _initialize(self):
+        self._frame = ttk.Frame(master = self._root)
+
+        content_label = ttk.Label(
+            master=self._frame, text="Minkä treenin haluat poistaa?")
+        content_label.grid(row=0, column=0, padx=4, pady=4, sticky=constants.W)
+
+        workout_label = ttk.Label(master=self._frame, text="Treeni:")
+        date_label = ttk.Label(
+            master=self._frame, text="Päivämäärä (YYYY-MM-DD):")
+
+        self._create_workout = ttk.Entry(master=self._frame)
+        self._create_workout_date = ttk.Entry(master=self._frame)
+
+        delete_workout_button = ttk.Button(
+            master=self._frame,
+            text="Poista treeni",
+            command=self._handle_delete_workout
+        )
+
+        workout_label.grid(row=1, column=0, padx=4, pady=4, sticky=constants.W)
+        date_label.grid(row=2, column=0, padx=4, pady=4, sticky=constants.W)
+        self._create_workout.grid(row=1, column=1, padx=4, pady=4, sticky=constants.W)
+        self._create_workout_date.grid(row=2, column=1, padx=4, pady=4, sticky=constants.W)
+        delete_workout_button.grid(row=3, column=0, padx=4, pady=4, sticky=constants.W)
