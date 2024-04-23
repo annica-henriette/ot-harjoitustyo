@@ -15,6 +15,8 @@ Sovelluksen toimintaa on testattu Python-versiolla 3.10.12.
 
 [Changelog](https://github.com/annica-henriette/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
 
+[Ensimmäinen release](https://github.com/annica-henriette/ot-harjoitustyo/releases/tag/viikko5)
+
 ## Asennus
 
 1. Riippuvuudet asennetaan komennolla
