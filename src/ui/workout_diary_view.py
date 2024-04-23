@@ -39,6 +39,10 @@ class WorkoutView:
         date = self._create_workout_date.get()
         username = self._user.username
 
+        if len(workout) > 100:
+            self._error("Treenin sisältö liian pitkä")
+            return
+
         if workout.strip() and date:
             try:
                 app_service.create_workout(workout, date, username)
