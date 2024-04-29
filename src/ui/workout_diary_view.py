@@ -8,7 +8,7 @@ class WorkoutView:
     """
 
     def __init__(self, root, handle_show_logout_view):
-        """Luokan konstruktori, joka luo uuden tehtävänäkymän.
+        """Luokan konstruktori, joka luo uuden treeninäkymän.
 
         Args:
             root: TKinter-elementti, jonka sisään näkymä alustetaan.
