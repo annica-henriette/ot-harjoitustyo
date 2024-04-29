@@ -32,3 +32,7 @@
 - Käyttäjä voi poistaa treenin 3,0 t
 - Dokumentaatio, release, testaus virtuaalityöasemalla 1,5 t
 - Yhteensä 8,5 tuntia
+
+## Viikko 6
+- Docstring lisäys 2,0 t
+- Arkkitehtuurikuvaus 1,0 t

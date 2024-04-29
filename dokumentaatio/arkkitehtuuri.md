@@ -6,10 +6,10 @@ Koodin pakkausrakenne on seuraava:
 
 ```mermaid
 classDiagram
-    ui-->>services
-    services-->>repositories
-    services-->>entities
-    repositories-->>entities
+    ui..>services
+    services..>repositories
+    services..>entities
+    repositories..>entities
 ```
 Pakkaus _ui_ sisältää käyttöliittymästä vastaavan koodin. Pakkaus _services_ sisältää sovelluslogiikasta ja _repositories_ tietojen tallennuksesta vastaavan koodin. Pakkaus _entities_ sisältää luokkia, jotka kuvastavat sovelluksessa käyettyjä olioita. 
 
