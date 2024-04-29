@@ -6,6 +6,9 @@ Koodin pakkausrakenne on seuraava:
 ```mermaid
 flowchart TD
     ui-.->services
+    services-.->repositories
+    services-.->entities
+    repositories-.->entities
 ```
 
 ## Sovelluslogiikka
