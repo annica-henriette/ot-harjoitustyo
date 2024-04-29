@@ -11,6 +11,8 @@ Sovelluksen toimintaa on testattu Python-versiolla 3.10.12.
 
 [Arkkitehtuurikuvaus](https://github.com/annica-henriette/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
+[Käyttöohje](https://github.com/annica-henriette/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
+
 [Työaikakirjanpito](https://github.com/annica-henriette/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
 
 [Changelog](https://github.com/annica-henriette/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
