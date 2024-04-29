@@ -1,5 +1,17 @@
 # Ohjelman arkkitehtuuri
 
+## Rakenne
+Koodin pakkausrakenne on seuraava:
+
+```mermaid
+ sequenceDiagram
+        participant ui
+        participant services
+        participant repositories
+        participant entities
+        ui-->>services
+```
+
 ## Sovelluslogiikka
 
 Sovellus muodostuu luokista 
