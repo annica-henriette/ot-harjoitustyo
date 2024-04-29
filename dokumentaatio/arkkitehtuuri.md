@@ -5,11 +5,7 @@ Koodin pakkausrakenne on seuraava:
 
 ```mermaid
 classDiagram
-        participant ui
-        participant services
-        participant repositories
-        participant entities
-        ui-->>services
+        ui ..> services
 ```
 
 ## Sovelluslogiikka
