@@ -4,8 +4,17 @@ from datetime import datetime
 
 
 class WorkoutView:
+    """Tehtävien listauksesta, lisäämisestä ja poistamisesta vastaava näkymä.
+    """
 
     def __init__(self, root, handle_logout):
+        """Luokan konstruktori, joka luo uuden tehtävänäkymän.
+
+        Args:
+            root: TKinter-elementti, jonka sisään näkymä alustetaan.
+            handle_logout: Arvo, jota kutsutaan kun käyttäjä kirjautuu ulos.
+        """
+        
         self._root = root
         self._handle_logout = handle_logout
         self._frame = None
@@ -22,9 +31,13 @@ class WorkoutView:
         self._initialize()
 
     def pack(self):
+        """Näyttää näkymän.
+        """
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """Tuhoaa näkymän.
+        """
         self._frame.destroy()
 
     def _logout_handler(self):
@@ -190,8 +203,15 @@ class WorkoutView:
 
 
 class WorkoutListView:
+    """Näkymä, joka vastaa treenien listauksesta.
+    """
     def __init__(self, root, workouts):
+        """Luokan konstruktori, joka luo uuden treenien listausnäkymän.
 
+        Args:
+            root: TKinter-elementti, jonka sisään näkymä alustetaan.
+            workouts: Lista Workout-olioita, jotka näytetään näkymässä.
+        """
         self._root = root
         self._workouts = workouts
         self._frame = None
@@ -199,9 +219,13 @@ class WorkoutListView:
         self._initialize()
 
     def pack(self):
+        """Näyttää näkymän.
+        """
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """Tuhoaa näkymän.
+        """
         self._frame.destroy()
 
     def _initialize_workout(self, workout):
@@ -222,7 +246,16 @@ class WorkoutListView:
 
 
 class WorkoutDeleteView:
+    """Treenien poistamisesta vastaava näkymä."""
+
     def __init__(self, root, delete_return):
+        """Luokan konstruktori, joka luo treenien poistamisnäkymän.
+
+        Args:
+            root: TKinter-elementti, jonka sisään näkymä alustetaan.
+            delete_return: Arvo, jota kutsutaan, kun treeni on poistettu onnistuneesti ja palataan listausnäkymään.
+        """
+
         self._root = root
         self._frame = None
         self._delete_return = delete_return
@@ -232,9 +265,13 @@ class WorkoutDeleteView:
         self._initialize()
 
     def pack(self):
+        """Näyttää näkymän.
+        """
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """Tuhoaa näkymän.
+        """
         self._frame.destroy()
 
     def _error(self, message):

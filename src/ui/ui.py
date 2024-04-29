@@ -5,11 +5,22 @@ from ui.workout_diary_view import WorkoutView
 
 
 class UI:
+    """Luokka, joka vastaa sovelluksen käyttöliittymästä.
+    """
+    
     def __init__(self, root):
+        """Luokan konstruktori, joka luo uuden käyttöliittymän.
+
+        Args:
+            root: TKinter-elementti, jonka sisään näkymä alustetaan.
+        """
+
         self._root = root
         self._current_view = None
 
     def start(self):
+        """Käynnistää käyttöliittymän."""
+
         self._show_login_view()
 
     def _destroy_current_view(self):

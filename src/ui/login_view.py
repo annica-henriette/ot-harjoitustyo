@@ -3,7 +3,18 @@ from services.app_service import app_service, InvalidLoginError
 
 
 class LoginView:
+    """Käyttäjän kirjautumisesta vastaava näkymä.
+    """
+
     def __init__(self, root, handle_login, handle_show_sign_up_view):
+        """Luokan konstruktori, joka luo uuden kirjautumisnäkymän.
+
+        Args:
+            root: TKinter-elementti, jonka sisään näkymä alustetaan.
+            handle_login: Arvo, jota kutsutaan, kun käyttäjä kirjautuu sisään. 
+            handle_show_sign_up_view: Arvo, jota kutsutaan, kun käyttäjä siirtyy rekisteröitymään.
+        """
+        
         self._root = root
         self._handle_login = handle_login
         self._handle_show_sign_up_view = handle_show_sign_up_view
@@ -16,12 +27,18 @@ class LoginView:
         self._initialize()
 
     def pack(self):
+        """Näyttää näkymän.
+        """
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """Tuhoaa näkymän.
+        """
         self._frame.destroy()
 
     def _login(self):
+        """Vastaa sisäänkirjautumisesta.
+        """
         username = self._username.get()
         password = self._password.get()
 

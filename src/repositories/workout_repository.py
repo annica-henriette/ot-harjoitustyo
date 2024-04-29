@@ -3,11 +3,25 @@ from database_connection import get_database_connection
 
 
 class WorkoutRepository:
-
+    """Treeneihin liittyvistä tietokantaoperaatioista vastaava luokka.
+    """
     def __init__(self, connection):
+        """Luokan konstruktori.
+
+        Args:
+            connection: Connection-olio, joka vastaa tietokantayhteydestä.
+        """
         self._connection = connection
 
     def create_workout(self, workout):
+        """Tallentaa treenin tietokantaan.
+
+        Args:
+            workout: Tallennettava treeni Workout-oliona.
+
+        Returns:
+            Palauttaa tallennetun treenin Workout-oliona. 
+        """
         cursor = self._connection.cursor()
         cursor.execute("insert into workouts (content, date, user) values (?, ?, ?)",
                        (workout.content, workout.date, workout.user))
@@ -17,6 +31,11 @@ class WorkoutRepository:
         return workout
 
     def list_all_workouts(self):
+        """Palauttaa kaikki treenit.
+
+        Returns:
+            Palauttaa listan Workout-olioita.
+        """
         cursor = self._connection.cursor()
         cursor.execute("select * from workouts")
         workouts = cursor.fetchall()
@@ -25,6 +44,14 @@ class WorkoutRepository:
                 else None for workout in workouts]
 
     def list_all_user_workouts(self, username):
+        """Palauttaa kaikki tietyn käyttäjän treenit.
+
+        Args:
+            username: Palautettavien treenien omistajan käyttäjätunnus. 
+
+        Returns:
+            Palauttaa listan Workout-olioita tietyn käyttäjän käyttäjätunnuksen perusteella.
+        """
         cursor = self._connection.cursor()
         cursor.execute("select * from workouts where user=?", (username,))
         user_workouts = cursor.fetchall()
@@ -33,12 +60,21 @@ class WorkoutRepository:
                 else None for workout in user_workouts]
 
     def delete_all_workouts(self):
+        """Poistaa kaikki treenit tietokannasta.
+        """
         cursor = self._connection.cursor()
         cursor.execute("delete from workouts")
 
         self._connection.commit()
 
     def delete_one_workout(self, username, content, date):
+        """Poistaa yhden käyttäjän treenin käyttäjätunnuksen, sisällön ja päivämäärän perusteella.
+
+        Args:
+            username: Poistettavan treenin omistajan käyttäjätunnus.
+            content: Poistettavan treenin sisältö.
+            date: Poistettavan treenin päivämäärä.
+        """
         cursor = self._connection.cursor()
         cursor.execute(
             "delete from workouts where user = ? and content = ? and date = ?",
