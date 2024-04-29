@@ -4,7 +4,7 @@
 Koodin pakkausrakenne on seuraava:
 
 ```mermaid
- sequenceDiagram
+sequenceDiagram
         participant ui
         participant services
         participant repositories
