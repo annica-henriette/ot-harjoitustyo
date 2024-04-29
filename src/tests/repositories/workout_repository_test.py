@@ -61,7 +61,7 @@ class TestWorkoutRepository(unittest.TestCase):
         self.assertEqual(lupu_workouts[0].content, "gym")
 
     def test_delete_all_workouts(self):
-        workout = workout_repository.create_workout(self.workout_running)
+        workout_repository.create_workout(self.workout_running)
         workouts = workout_repository.list_all_workouts()
 
         self.assertEqual(len(workouts), 1)
@@ -97,3 +97,22 @@ class TestWorkoutRepository(unittest.TestCase):
 
         self.assertEqual(len(hupu_workouts), 1)
         self.assertEqual(hupu_workouts[0].content, "climbing")
+
+    def test_modify_workout(self):
+        hupu = user_repository.create_user(self.user_hupu)
+
+        running = workout_repository.create_workout(
+            Workout(content="running", date="2024-04-24", user=hupu.username))
+
+        hupu_workouts = workout_repository.list_all_user_workouts(
+            hupu.username)
+
+        self.assertEqual(hupu_workouts[0].content, "running")
+
+        workout_repository.modify_workout(
+            hupu.username, running.content, "gym", running.date)
+
+        hupu_workouts = workout_repository.list_all_user_workouts(
+            hupu.username)
+
+        self.assertEqual(hupu_workouts[0].content, "gym")

@@ -27,6 +27,8 @@ class WorkoutView:
         self._error_label = None
         self._delete_frame = None
         self._delete_view = None
+        self._modify_frame = None
+        self._modify_view = None
 
         self._initialize()
 
@@ -44,11 +46,13 @@ class WorkoutView:
         app_service.logout()
         if self._delete_view:
             self._delete_view.destroy()
+        if self._modify_view:
+            self._modify_view.destroy()
         self.destroy()
         self._handle_logout()
 
     def _handle_create_workout(self):
-        workout = self._create_workout.get()
+        workout = self._create_workout.get().lstrip()
         date = self._create_workout_date.get()
         username = self._user.username
 
@@ -73,6 +77,8 @@ class WorkoutView:
     def _handle_delete_workout(self):
         if self._delete_view:
             self._delete_view.destroy()
+        if self._modify_view:
+            self._modify_view.destroy()
 
         # generoitu koodi alkaa
 
@@ -88,6 +94,27 @@ class WorkoutView:
         )
 
         self._delete_view.pack()
+
+    def _handle_modify_workout(self):
+        if self._modify_view:
+            self._modify_view.destroy()
+        if self._delete_view:
+            self._delete_view.destroy()
+
+        # generoitu koodi alkaa
+
+        def handle_modify_return():
+            self._initialize_workouts()
+            self._modify_view.destroy()
+
+        # generoitu koodi päättyy
+
+        self._modify_view = WorkoutModifyView(
+            self._modify_frame,
+            handle_modify_return  # generoitu metodi
+        )
+
+        self._modify_view.pack()
 
     def _error(self, message):
         self._error_message.set(message)
@@ -123,31 +150,46 @@ class WorkoutView:
             command=self._handle_create_workout
         )
 
-        content_label.grid(row=2, column=1, padx=2, pady=2, sticky=constants.E)
-        date_label.grid(row=3, column=1, padx=2, pady=2, sticky=constants.E)
+        content_label.grid(row=3, column=0, padx=2,
+                           pady=2, sticky=constants.EW)
+        date_label.grid(row=4, column=0, padx=2, pady=2, sticky=constants.EW)
 
         self._create_workout.grid(
-            row=2, column=2, padx=2, pady=2, sticky=constants.W)
+            row=3, column=1, padx=2, pady=2, sticky=constants.EW)
         self._create_workout_date.grid(
-            row=3, column=2, padx=2, pady=2, sticky=constants.W)
+            row=4, column=1, padx=2, pady=2, sticky=constants.EW)
 
         create_workout_button.grid(
-            row=4,
-            column=2,
+            row=5,
+            column=1,
+            padx=2,
+            pady=2,
+            sticky=constants.EW
+        )
+
+    def _initialize_other_buttons(self):
+        modify_workout_button = ttk.Button(
+            master=self._frame,
+            text="Muokkaa treeniä",
+            command=self._handle_modify_workout
+        )
+
+        modify_workout_button.grid(
+            row=7,
+            column=0,
             padx=2,
             pady=2,
             sticky=constants.W
         )
 
-    def _initialize_delete_workout_button(self):
         delete_workout_button = ttk.Button(
             master=self._frame,
             text="Poista treeni",
             command=self._handle_delete_workout
         )
         delete_workout_button.grid(
-            row=5,
-            column=2,
+            row=8,
+            column=0,
             padx=2,
             pady=2,
             sticky=constants.W
@@ -163,7 +205,7 @@ class WorkoutView:
 
         logout_button.grid(
             row=0,
-            column=2,
+            column=3,
             padx=2,
             pady=2,
             sticky=constants.E
@@ -187,16 +229,33 @@ class WorkoutView:
         self._initialize_logout_button()
 
         user_name = ttk.Label(
-            master=self._frame, text=f"Tervetuloa {self._user.username}!", foreground="blue")
-        user_name.grid(row=0, column=0, padx=4, pady=4, sticky=constants.W)
+            master=self._frame, text=f"Tervetuloa {self._user.username}!",
+            background="blue",
+            foreground="white",
+            font=("Helvetica", 12, "bold"))
+        user_name.grid(row=0, column=0, columnspan=3, padx=4,
+                       pady=(10, 4), sticky=constants.W)
 
         self._initialize_workouts()
+
+        create_label = ttk.Label(
+            master=self._frame, text="Haluatko lisätä treenin?", font=("Helvetica", 10, "bold"))
+        create_label.grid(row=2, column=0, columnspan=3,
+                          padx=4, pady=(10, 4), sticky=constants.W)
+
         self._initialize_create_workout_button()
-        self._initialize_delete_workout_button()
+
+        functions_label = ttk.Label(
+            master=self._frame, text="Haluatko muokata tai poistaa treenin?",
+            font=("Helvetica", 10, "bold"))
+        functions_label.grid(row=6, column=0, columnspan=3,
+                             padx=4, pady=(10, 4), sticky=constants.W)
+
+        self._initialize_other_buttons()
 
         self._workout_frame.grid(row=1, column=0, sticky=constants.W)
 
-        self._frame.grid_columnconfigure(0, weight=1, minsize=400)
+        self._frame.grid_columnconfigure(0, weight=1, minsize=100)
         self._frame.grid_columnconfigure(1, weight=0)
 
         self._hide_error()
@@ -341,6 +400,122 @@ class WorkoutDeleteView:
 
         workout_label.grid(row=1, column=0, padx=4, pady=4, sticky=constants.W)
         delete_workout_button.grid(
+            row=3, column=0, padx=4, pady=4, sticky=constants.W)
+
+        self._hide_error()
+
+
+class WorkoutModifyView:
+    """Treenien muokkaamisesta vastaava näkymä."""
+
+    def __init__(self, root, modify_return):
+        """Luokan konstruktori, joka luo treenien muokkaamisnäkymän.
+
+        Args:
+            root: TKinter-elementti, jonka sisään näkymä alustetaan.
+            modify_return: Arvo, jota kutsutaan, kun treeniä on muokattu onnistuneesti ja palataan listausnäkymään.
+        """
+
+        self._root = root
+        self._frame = None
+        self._modify_return = modify_return
+        self._error_message = None
+        self._error_label = None
+        self._selected_workout = StringVar()
+        self._new_content = StringVar()
+
+        self._initialize()
+
+    def pack(self):
+        """Näyttää näkymän.
+        """
+        self._frame.pack(fill=constants.X)
+
+    def destroy(self):
+        """Tuhoaa näkymän.
+        """
+        self._frame.destroy()
+
+    def _error(self, message):
+        self._error_message.set(message)
+        self._error_label.grid()
+
+    def _hide_error(self):
+        self._error_label.grid_remove()
+
+    def _handle_modify_workout(self):
+        workout_str = self._selected_workout.get()
+        new_content = self._new_content.get().lstrip()
+        if len(new_content) > 100:
+            self._error("Treenin sisältö liian pitkä")
+            return
+        if len(new_content.strip()) == 0:
+            self._error("Treenin sisältö ei voi olla tyhjä")
+            return
+        if workout_str and new_content.strip():
+            try:
+                # generoitu koodi alkaa
+                old_content, date = workout_str.split(" - ")
+                old_content = old_content.strip()
+                date = date.strip()
+                # generoitu koodi päättyy
+                app_service.modify_workout(old_content, new_content, date)
+                self._modify_return()
+            except InvalidDate as error:
+                self._error(str(error))
+            except NoSuchWorkoutError as error:
+                self._error(str(error))
+
+    def _initialize(self):
+        self._frame = ttk.Frame(master=self._root)
+
+        self._error_message = StringVar(self._frame)
+
+        self._error_label = ttk.Label(
+            master=self._frame,
+            textvariable=self._error_message,
+            foreground="black",
+            background="red"
+        )
+
+        self._error_label.grid(row=4, column=0, padx=3, pady=3)
+
+        heading_label = ttk.Label(
+            master=self._frame, text="Mitä treeniä haluat muokata?")
+        heading_label.grid(row=0, column=0, padx=4, pady=4, sticky=constants.W)
+
+        workout_label = ttk.Label(
+            master=self._frame, text="Muokattava treeni:")
+
+        workouts = app_service.get_user_workouts()
+
+        workout_options = [
+            f"{workout.content} - {workout.date}" for workout in workouts]
+
+        self._selected_workout.set(workout_options[0])
+        workout_dropdown = ttk.Combobox(
+            master=self._frame,
+            textvariable=self._selected_workout,
+            values=workout_options
+        )
+
+        content_label = ttk.Label(
+            master=self._frame, text="Treenin uusi sisältö:")
+        self._new_content = ttk.Entry(master=self._frame)
+
+        modify_workout_button = ttk.Button(
+            master=self._frame,
+            text="Muokkaa treeniä",
+            command=self._handle_modify_workout
+        )
+
+        workout_label.grid(row=1, column=0, padx=4, pady=4, sticky=constants.W)
+        workout_dropdown.grid(row=1, column=1, padx=4,
+                              pady=4, sticky=constants.W)
+        content_label.grid(row=2, column=0, padx=4, pady=4, sticky=constants.W)
+        self._new_content.grid(row=2, column=1, padx=4,
+                               pady=4, sticky=constants.W)
+        modify_workout_button.grid(
             row=3, column=0, padx=4, pady=4, sticky=constants.W)
 
         self._hide_error()

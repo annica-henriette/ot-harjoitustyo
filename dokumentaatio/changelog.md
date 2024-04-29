@@ -24,3 +24,6 @@
 
 ## Viikko 6
 - Käyttäjä voi poistaa treenin käyttämällä dropdown-valikkoa
+- Käyttäjä voi muokata treeniä
+- Testattu, että treeniä voi muokata
+

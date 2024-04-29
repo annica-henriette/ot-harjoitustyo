@@ -211,7 +211,31 @@ class AppService:
             raise NoSuchWorkoutError(
                 "Treeniä ei löydy annetulla sisällöllä ja päivämäärällä")
 
-# def modify_workout
+    def modify_workout(self, old_content, new_content, date):
+        """Muokkaa kirjautuneen käyttäjän treenin sisältöä.
+
+        Args:
+            old_content: Muokattavan treenin vanha sisältö.
+            new_content: Muokattavan treenin uusi sisältö.
+            date: Muokattavan treenin päivämäärä.
+        Raises:
+            NoSuchWorkoutError:
+                Virhe, joka tapahtuu, kun muokattavaa treeniä ei löydy käyttäjän treeneistä.
+        """
+
+        user_workouts = self.get_user_workouts()
+
+        found_workout = False
+        for workout in user_workouts:
+            if workout.content == old_content and workout.date == date:
+                self._workout_repository.modify_workout(
+                    self._user.username, old_content, new_content, date)
+                found_workout = True
+                break
+
+        if not found_workout:
+            raise NoSuchWorkoutError(
+                "Treeniä ei löydy annetulla sisällöllä ja päivämäärällä")
 
 
 app_service = AppService()

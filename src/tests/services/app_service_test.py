@@ -29,6 +29,12 @@ class WorkoutRepositoryForTesting:
                 self.workouts.remove(workout)
                 return
 
+    def modify_workout(self, user, old_content, new_content, date):
+        for workout in self.workouts:
+            if workout.user == user and workout.content == old_content and workout.date == date:
+                workout.content = new_content
+                return
+
 
 class UserRepositoryForTesting:
     def __init__(self, users=None):
@@ -205,3 +211,19 @@ class TestAppService(unittest.TestCase):
 
         self.assertRaises(NoSuchWorkoutError, lambda: self.app_service.delete_one_workout(
             "gym", "2024-04-24"))
+        self.assertRaises(NoSuchWorkoutError, lambda: self.app_service.modify_workout(
+            "gym", "running", "2024-04-24"))
+
+    def test_modify_workout(self):
+        self.login_user(self.user_hupu)
+        user = self.user_hupu
+
+        self.app_service.create_workout("running", "2024-04-24", user.username)
+
+        self.app_service.modify_workout("running", "gym", "2024-04-24")
+        workouts = self.app_service.get_user_workouts()
+
+        self.assertEqual(len(workouts), 1)
+        self.assertEqual(workouts[0].content, "gym")
+        self.assertEqual(workouts[0].user, user.username)
+        self.assertEqual(workouts[0].date, "2024-04-24")

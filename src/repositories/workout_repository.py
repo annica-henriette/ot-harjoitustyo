@@ -83,7 +83,22 @@ class WorkoutRepository:
 
         self._connection.commit()
 
-# def modify_workout()
+    def modify_workout(self, username, old_content, new_content, date):
+        """Muokkaa käyttäjän treenin sisältöä.
+
+        Args:
+            username: Muokattavan treenin omistajan käyttäjätunnus.
+            old_content: Muokattavan treenin vanha sisältö.
+            new_content: Muokattavan treenin uusi sisältö.
+            date: Muokattavan treenin päivämäärä.
+        """
+
+        cursor = self._connection.cursor()
+        cursor.execute(
+            "UPDATE workouts SET content = ? WHERE user = ? AND content = ? AND date = ?",
+            (new_content, username, old_content, date))
+
+        self._connection.commit()
 
 
 workout_repository = WorkoutRepository(get_database_connection())
