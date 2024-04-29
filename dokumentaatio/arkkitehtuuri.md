@@ -4,7 +4,7 @@
 Koodin pakkausrakenne on seuraava:
 
 ```mermaid
-classDiagram TD
+classDiagram
     ui-->services
     services-->repositories
     services-->entities
