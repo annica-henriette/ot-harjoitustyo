@@ -4,7 +4,16 @@
 Koodin pakkausrakenne on seuraava:
 
 ```mermaid
-flowchart TD
+graph TD;
+    subgraph "UI"
+        ui[UI] 
+    end
+    subgraph "Services & Entities"
+        services[Services] --> entities[Entities]
+    end
+    subgraph "Repositories"
+        repositories[Repositories]
+    end
     ui-.->services
     services-.->repositories
     services-.->entities
