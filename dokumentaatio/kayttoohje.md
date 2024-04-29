@@ -1,4 +1,4 @@
-### Käyttöohje
+# Käyttöohje
 
 Lataa projektin viimeisimmän releasen lähdekoodi. Valitse _Assets_-osion alta _Source code_.
 
@@ -13,7 +13,7 @@ DATABASE_FILENAME=database.sqlite
 
 ## Näin käynnistät ohjelman
 
-# Ennen ohjelman käynnistämistä: 
+### Ennen ohjelman käynnistämistä: 
 
 Riippuvuudet asennetaan komennolla
 
@@ -26,7 +26,7 @@ Vaadittavat alustustoimipiteet suoritetaan komennolla
 ```bash
 poetry run invoke build
 ```
-# Käynnistä sovellus
+### Käynnistä sovellus
 
 Sovellus käynnistetään komennolla
 
