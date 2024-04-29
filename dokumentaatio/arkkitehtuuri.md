@@ -4,8 +4,20 @@
 Koodin pakkausrakenne on seuraava:
 
 ```mermaid
-classDiagram
-        ui ..> services
+graph TD;
+    subgraph "ui"
+        A[ui] --> B{services};
+        A --> C{repositories};
+    end
+    subgraph "services & entities"
+        D[Service Module] --> E{Submodule 1};
+        D --> F{Submodule 2};
+        G[Entity Module] --> H{Submodule 1};
+        G --> I{Submodule 2};
+    end
+    subgraph "repositories"
+        J[repositories] --> K{entities};
+    end
 ```
 
 ## Sovelluslogiikka
