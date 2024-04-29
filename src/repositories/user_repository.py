@@ -12,6 +12,7 @@ class UserRepository:
         Args:
             connection: Connection-olio, joka vastaa tietokantayhteydestä.
         """
+
         self._connection = connection
 
     def find_all_users(self):
@@ -20,6 +21,7 @@ class UserRepository:
         Returns:
             Palauttaa listan User-olioita.
         """
+
         cursor = self._connection.cursor()
         cursor.execute("select * from users")
         users = cursor.fetchall()
@@ -35,6 +37,7 @@ class UserRepository:
         Returns:
             Palauttaa tallennetun käyttäjän User-oliona.
         """
+
         cursor = self._connection.cursor()
         cursor.execute("insert into users (username, password) values (?, ?)",
                        (user.username, user.password))
@@ -46,6 +49,7 @@ class UserRepository:
     def delete_all_users(self):
         """Poistaa kaikki käyttäjät.
         """
+
         cursor = self._connection.cursor()
         cursor.execute("delete from users")
 
@@ -61,6 +65,7 @@ class UserRepository:
             Jos käyttäjätunnuksen perusteella löytyy käyttäjä tietokannasa, 
             alauttaa User-olion, muuten None.
         """
+        
         cursor = self._connection.cursor()
         cursor.execute("select * from users where username=?",
                        (username,))

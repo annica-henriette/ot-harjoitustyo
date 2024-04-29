@@ -92,6 +92,7 @@ class AppService:
         Returns:
             Palauttaa kirjautuneen käyttäjän User-olion muodossa.
         """
+
         user = self._user_repository.find_one_user(username)
 
         if not user or user.password != password:
@@ -104,6 +105,7 @@ class AppService:
     def logout(self):
         """Kirjaa kirjautuneen käyttäjän ulos.
         """
+
         self._user = None
 
     def create_user(self, username, password, login=True):
@@ -123,6 +125,7 @@ class AppService:
         Returns:
             Palauttaa luodun käyttäjän User-olion muodossa.
         """
+
         taken_username = self._user_repository.find_one_user(username)
 
         if taken_username:
@@ -142,6 +145,7 @@ class AppService:
         Returns:
             Palauttaa kaikki treenit listana Workout-olioita.
         """
+
         workouts = self._workout_repository.list_all_workouts()
 
         return workouts
@@ -152,6 +156,7 @@ class AppService:
         Returns:
             Palauttaa kirjautuneen käyttäjän User-olion muodossa.
         """
+
         return self._user
 
     def get_all_users(self):
@@ -160,6 +165,7 @@ class AppService:
         Returns:
             Palauttaa listan kaikista käyttäjistä User-olioiden muodossa.
         """
+
         return self._user_repository.find_all_users()
 
     def get_user_workouts(self):
@@ -169,6 +175,7 @@ class AppService:
             Palauttaa listan tietyn käyttäjän treeneistä Workout-olioiden muodossa.
             Jos käyttäjä ei ole kirjautunut, palauttaa tyhjän listan.
         """
+        
         if not self._user:
             return []
 

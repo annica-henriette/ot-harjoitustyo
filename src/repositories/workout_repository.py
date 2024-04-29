@@ -12,6 +12,7 @@ class WorkoutRepository:
         Args:
             connection: Connection-olio, joka vastaa tietokantayhteydestä.
         """
+        
         self._connection = connection
 
     def create_workout(self, workout):
@@ -23,6 +24,7 @@ class WorkoutRepository:
         Returns:
             Palauttaa tallennetun treenin Workout-oliona. 
         """
+
         cursor = self._connection.cursor()
         cursor.execute("insert into workouts (content, date, user) values (?, ?, ?)",
                        (workout.content, workout.date, workout.user))
@@ -37,6 +39,7 @@ class WorkoutRepository:
         Returns:
             Palauttaa listan Workout-olioita.
         """
+
         cursor = self._connection.cursor()
         cursor.execute("select * from workouts")
         workouts = cursor.fetchall()
@@ -53,6 +56,7 @@ class WorkoutRepository:
         Returns:
             Palauttaa listan Workout-olioita tietyn käyttäjän käyttäjätunnuksen perusteella.
         """
+
         cursor = self._connection.cursor()
         cursor.execute("select * from workouts where user=?", (username,))
         user_workouts = cursor.fetchall()
@@ -63,6 +67,7 @@ class WorkoutRepository:
     def delete_all_workouts(self):
         """Poistaa kaikki treenit tietokannasta.
         """
+
         cursor = self._connection.cursor()
         cursor.execute("delete from workouts")
 
@@ -76,6 +81,7 @@ class WorkoutRepository:
             content: Poistettavan treenin sisältö.
             date: Poistettavan treenin päivämäärä.
         """
+
         cursor = self._connection.cursor()
         cursor.execute(
             "delete from workouts where user = ? and content = ? and date = ?",
@@ -95,7 +101,7 @@ class WorkoutRepository:
 
         cursor = self._connection.cursor()
         cursor.execute(
-            "UPDATE workouts SET content = ? WHERE user = ? AND content = ? AND date = ?",
+            "update workouts set content = ? where user = ? and content = ? and date = ?",
             (new_content, username, old_content, date))
 
         self._connection.commit()

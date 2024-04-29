@@ -6,7 +6,7 @@ class LogoutView:
     """
 
     def __init__(self, root, handle_show_login_view):
-        """Luokan konstruktori, joka luo uuden kirjautumisnäkymän.
+        """Luokan konstruktori, joka luo uuden uloskirjautumisnäkymän.
 
         Args:
             root: TKinter-elementti, jonka sisään näkymä alustetaan.
