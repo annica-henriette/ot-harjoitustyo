@@ -37,4 +37,5 @@
 - Docstring lisäys 2,0 t
 - Arkkitehtuurikuvaus 1,0 t
 - Käyttöohje 1,0 t
-- Yhteensä 4 tuntia
+- Treenin poistaminen dropdown-menun avulla 1,0 t
+- Yhteensä 5 tuntia

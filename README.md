@@ -74,3 +74,11 @@ Tiedoston [.pylintrc](https://github.com/annica-henriette/ot-harjoitustyo/blob/m
 ```bash
 poetry run invoke lint
 ```
+
+### Koodin formatointi
+
+Koodin voi formatoida komennolla:
+
+```bash
+poetry run invoke format
+```
