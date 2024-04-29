@@ -5,6 +5,7 @@ from database_connection import get_database_connection
 class WorkoutRepository:
     """Treeneihin liittyvistä tietokantaoperaatioista vastaava luokka.
     """
+
     def __init__(self, connection):
         """Luokan konstruktori.
 

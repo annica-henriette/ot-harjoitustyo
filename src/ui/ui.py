@@ -7,7 +7,7 @@ from ui.workout_diary_view import WorkoutView
 class UI:
     """Luokka, joka vastaa sovelluksen käyttöliittymästä.
     """
-    
+
     def __init__(self, root):
         """Luokan konstruktori, joka luo uuden käyttöliittymän.
 

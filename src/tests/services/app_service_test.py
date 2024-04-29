@@ -29,6 +29,7 @@ class WorkoutRepositoryForTesting:
                 self.workouts.remove(workout)
                 return
 
+
 class UserRepositoryForTesting:
     def __init__(self, users=None):
         self.users = users or []
@@ -202,4 +203,5 @@ class TestAppService(unittest.TestCase):
 
         self.app_service.create_workout("running", "2024-04-24", user.username)
 
-        self.assertRaises(NoSuchWorkoutError, lambda: self.app_service.delete_one_workout("gym", "2024-04-24"))
+        self.assertRaises(NoSuchWorkoutError, lambda: self.app_service.delete_one_workout(
+            "gym", "2024-04-24"))

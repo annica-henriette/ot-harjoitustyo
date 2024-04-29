@@ -40,7 +40,7 @@ class AppService:
                         Olio, jolla on UserRepository-luokkaa vastaavat metodit.
                         Vapaaehtoinen, oletusarvolta UserRepository-olio.
         """
-        
+
         self._user = None
         self._workout_repository = workout_rep
         self._user_repository = user_rep
@@ -55,7 +55,8 @@ class AppService:
 
         Raises:
             InvalidDate: Virhe, joka tapahtuu, kun päivämäärä on väärässä muodossa.
-            DuplicateWorkoutError: Virhe, joka tapahtuu, jos treeni on jo olemassa annetulla sisällöllä ja päivämäärällä.
+            DuplicateWorkoutError: Virhe, joka tapahtuu, jos treeni on jo olemassa 
+            annetulla sisällöllä ja päivämäärällä.
 
         Returns:
             Luotu treeni Workout-olion muodossa.
@@ -183,8 +184,11 @@ class AppService:
             date: Poistettavan treenin päivämäärä.
 
         Raises:
-            InvalidDate: Virhe, joka tapahtuu, kun poistettavan treenin päivämäärä on annettu väärässä muodossa.
-            NoSuchWorkoutError: Virhe, joka tapahtuu, kun poistettavaa treeniä ei löydy käyttäjän treeneistä.
+            InvalidDate: 
+                Virhe, joka tapahtuu, kun poistettavan treenin päivämäärä 
+                on annettu väärässä muodossa.
+            NoSuchWorkoutError: 
+                Virhe, joka tapahtuu, kun poistettavaa treeniä ei löydy käyttäjän treeneistä.
         """
 
         try:

@@ -5,6 +5,7 @@ from database_connection import get_database_connection
 class UserRepository:
     """Luokka, joka vastaa käyttäjiin liittyvistä tietokantaoperaatioista.
     """
+
     def __init__(self, connection):
         """Luokan konstruktori.
 
@@ -57,7 +58,8 @@ class UserRepository:
             username: Palautettavan käyttäjän käyttäjätunnus.
 
         Returns:
-            Jos käyttäjätunnuksen perusteella löytyy käyttäjä tietokannasa, palauttaa User-olion, muuten None.
+            Jos käyttäjätunnuksen perusteella löytyy käyttäjä tietokannasa, 
+            alauttaa User-olion, muuten None.
         """
         cursor = self._connection.cursor()
         cursor.execute("select * from users where username=?",

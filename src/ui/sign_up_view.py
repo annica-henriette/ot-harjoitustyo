@@ -5,7 +5,7 @@ from services.app_service import app_service, UsernameTakenError
 class SignUpView:
     """Käyttäjän rekisteröitymisestä vastaava näkymä.
     """
-    
+
     def __init__(self, root, handle_signup, handle_show_login_view):
         """Luokan konstruktori, joka luo uuden rekisteröitymisnäkymän.
 

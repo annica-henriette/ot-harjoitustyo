@@ -21,3 +21,6 @@
 - Käyttäjä voi poistaa treenin
 - Testattu, että päivämäärän voi lisätä ja, että poikkeus nousee, jos päivämäärä väärässä muodossa
 - Testattu, että treenin voi poistaa ja, että poikkeus nousee, jos käyttäjällä ei ole ensin lisännyt kyseistä treeniä
+
+## Viikko 6
+- Käyttäjä voi poistaa treenin käyttämällä dropdown-valikkoa

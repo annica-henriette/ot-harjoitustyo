@@ -36,3 +36,5 @@
 ## Viikko 6
 - Docstring lisäys 2,0 t
 - Arkkitehtuurikuvaus 1,0 t
+- Käyttöohje 1,0 t
+- Yhteensä 4 tuntia

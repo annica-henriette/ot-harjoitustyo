@@ -14,7 +14,7 @@ class WorkoutView:
             root: TKinter-elementti, jonka sisään näkymä alustetaan.
             handle_logout: Arvo, jota kutsutaan kun käyttäjä kirjautuu ulos.
         """
-        
+
         self._root = root
         self._handle_logout = handle_logout
         self._frame = None
@@ -205,6 +205,7 @@ class WorkoutView:
 class WorkoutListView:
     """Näkymä, joka vastaa treenien listauksesta.
     """
+
     def __init__(self, root, workouts):
         """Luokan konstruktori, joka luo uuden treenien listausnäkymän.
 
@@ -261,6 +262,7 @@ class WorkoutDeleteView:
         self._delete_return = delete_return
         self._error_message = None
         self._error_label = None
+        self._selected_workout = StringVar()
 
         self._initialize()
 
@@ -282,11 +284,15 @@ class WorkoutDeleteView:
         self._error_label.grid_remove()
 
     def _handle_delete_workout(self):
-        workout = self._create_workout.get()
-        date = self._create_workout_date.get()
-        if workout and date:
+        workout_str = self._selected_workout.get()
+        if workout_str:
             try:
-                app_service.delete_one_workout(workout, date)
+                # generoitu koodi alkaa
+                content, date = workout_str.split(" - ")
+                content = content.strip()
+                date = date.strip()
+                # generoitu koodi päättyy
+                app_service.delete_one_workout(content, date)
                 self._delete_return()
             except InvalidDate as error:
                 self._error(str(error))
@@ -312,11 +318,20 @@ class WorkoutDeleteView:
         content_label.grid(row=0, column=0, padx=4, pady=4, sticky=constants.W)
 
         workout_label = ttk.Label(master=self._frame, text="Treeni:")
-        date_label = ttk.Label(
-            master=self._frame, text="Päivämäärä (YYYY-MM-DD):")
 
-        self._create_workout = ttk.Entry(master=self._frame)
-        self._create_workout_date = ttk.Entry(master=self._frame)
+        workouts = app_service.get_user_workouts()
+        workout_options = [
+            f"{workout.content} - {workout.date}" for workout in workouts]
+
+        self._selected_workout.set(workout_options[0])
+        workout_dropdown = ttk.Combobox(
+            master=self._frame,
+            textvariable=self._selected_workout,
+            values=workout_options
+        )
+
+        workout_dropdown.grid(row=1, column=0, padx=4,
+                              pady=4, sticky=constants.W)
 
         delete_workout_button = ttk.Button(
             master=self._frame,
@@ -325,11 +340,6 @@ class WorkoutDeleteView:
         )
 
         workout_label.grid(row=1, column=0, padx=4, pady=4, sticky=constants.W)
-        date_label.grid(row=2, column=0, padx=4, pady=4, sticky=constants.W)
-        self._create_workout.grid(
-            row=1, column=1, padx=4, pady=4, sticky=constants.W)
-        self._create_workout_date.grid(
-            row=2, column=1, padx=4, pady=4, sticky=constants.W)
         delete_workout_button.grid(
             row=3, column=0, padx=4, pady=4, sticky=constants.W)
 

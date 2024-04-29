@@ -6,6 +6,7 @@ class Workout:
             date: Merrkijono, joka kuvaa treenin päivämäärää.
             user: User-olio, joka kuvaa treenin omistajaa.
     """
+
     def __init__(self, content, date, user=None):
         """Luokan konstruktori, joka luo uuden treenin.
 

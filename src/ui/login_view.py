@@ -14,7 +14,7 @@ class LoginView:
             handle_login: Arvo, jota kutsutaan, kun käyttäjä kirjautuu sisään. 
             handle_show_sign_up_view: Arvo, jota kutsutaan, kun käyttäjä siirtyy rekisteröitymään.
         """
-        
+
         self._root = root
         self._handle_login = handle_login
         self._handle_show_sign_up_view = handle_show_sign_up_view
