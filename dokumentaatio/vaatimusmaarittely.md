@@ -14,10 +14,10 @@ Sovellukseen suunnitellaan toteutettavan sekä normaalit käyttäjät, että my�
 
 - Käyttäjä voi luoda käyttäjätunnuksen (tehty)
 - Käyttäjä voi kirjautua järjestelmään (tehty)
-- Käyttäjä voi hallinnoida omia treenejä 
+- Käyttäjä voi hallinnoida omia treenejä (tehty)
 	- Käyttäjä voi lisätä uuden treenin (tehty)
 	- Käyttäjä voi poistaa treenin (tehty)
-	- Käyttäjä voi muokata treeniä
-        - Käyttäjä lisää treenille päivämäärän (tehty)
+	- Käyttäjä voi muokata treenin sisältöä (tehty)
+    - Käyttäjä lisää treenille päivämäärän (tehty)
 - Käyttäjä voi kirjautua ulos (tehty)
 

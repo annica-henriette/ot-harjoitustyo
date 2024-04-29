@@ -2,6 +2,7 @@ from tkinter import Tk, ttk, constants
 from ui.login_view import LoginView
 from ui.sign_up_view import SignUpView
 from ui.workout_diary_view import WorkoutView
+from ui.logout_view import LogoutView
 
 
 class UI:
@@ -54,6 +55,13 @@ class UI:
     def _show_workout_view(self):
         self._destroy_current_view()
 
-        self._current_view = WorkoutView(self._root, self._show_login_view)
+        self._current_view = WorkoutView(
+            self._root,
+            self._show_logout_view)
 
+        self._current_view.pack()
+
+    def _show_logout_view(self):
+        self._destroy_current_view()
+        self._current_view = LogoutView(self._root, self._show_login_view)
         self._current_view.pack()

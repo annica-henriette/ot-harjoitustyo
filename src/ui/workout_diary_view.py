@@ -4,10 +4,10 @@ from datetime import datetime
 
 
 class WorkoutView:
-    """Tehtävien listauksesta, lisäämisestä ja poistamisesta vastaava näkymä.
+    """Treenien listauksesta, lisäämisestä, muokkaamisesta ja poistamisesta vastaava näkymä.
     """
 
-    def __init__(self, root, handle_logout):
+    def __init__(self, root, handle_show_logout_view):
         """Luokan konstruktori, joka luo uuden tehtävänäkymän.
 
         Args:
@@ -16,7 +16,7 @@ class WorkoutView:
         """
 
         self._root = root
-        self._handle_logout = handle_logout
+        self._handle_show_logout_view = handle_show_logout_view
         self._frame = None
         self._user = app_service.loggedin_user()
         self._create_workout = None
@@ -49,7 +49,7 @@ class WorkoutView:
         if self._modify_view:
             self._modify_view.destroy()
         self.destroy()
-        self._handle_logout()
+        self._handle_show_logout_view()
 
     def _handle_create_workout(self):
         workout = self._create_workout.get().lstrip()
@@ -128,10 +128,11 @@ class WorkoutView:
             self._workout_view.destroy()
 
         workouts = app_service.get_user_workouts()
+        sorted_workouts = sorted(workouts, key=lambda workout: workout.date)
 
         self._workout_view = WorkoutListView(
             self._workout_frame,
-            workouts
+            sorted_workouts
         )
 
         self._workout_view.pack()
@@ -224,7 +225,7 @@ class WorkoutView:
             background="red"
         )
 
-        self._error_label.grid(row=4, column=0, padx=3, pady=3)
+        self._error_label.grid(row=5, column=2, padx=3, pady=3)
 
         self._initialize_logout_button()
 
