@@ -1,5 +1,5 @@
 # Treenipäiväkirja
-Sovelluksen tarkoitus on, että käyttäjä voi kirjautua sisään ja pitää kirjaa omista treeneistä ja hallinnoida niitä.
+Sovelluksen tarkoitus on, että käyttäjä voi kirjautua sisään ja pitää kirjaa omista treeneistä ja hallinnoida niitä muokkaamalla tai poistamalla treenejä.
 
 ## Python-versio
 
@@ -18,6 +18,8 @@ Sovelluksen toimintaa on testattu Python-versiolla 3.10.12.
 [Changelog](https://github.com/annica-henriette/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
 
 [Ensimmäinen release](https://github.com/annica-henriette/ot-harjoitustyo/releases/tag/viikko5)
+
+[Toinen release - UUSIN](https://github.com/annica-henriette/ot-harjoitustyo/releases/tag/viikko6)
 
 ## Asennus
 
