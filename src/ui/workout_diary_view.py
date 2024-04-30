@@ -66,6 +66,8 @@ class WorkoutView:
                 self._initialize_workouts()
                 if self._delete_view:
                     self._delete_view.destroy()
+                if self._modify_view:
+                    self._modify_view.destroy()
                 self._create_workout.delete(0, constants.END)
                 self._create_workout_date.delete(0, constants.END)
                 self._hide_error()

@@ -40,5 +40,5 @@
 - Treenin poistaminen dropdown-menun avulla 1,0
 - Treenin muokkaaminen 2,0 t
 - Uloskirjautuminen 1,5 t
-- Dokumentaatio 1,0 t
-- Yhteensä 9,5 tuntia
+- Dokumentaatio 1,5 t
+- Yhteensä 10 tuntia

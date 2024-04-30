@@ -16,7 +16,7 @@ class UserRepository:
         self._connection = connection
 
     def find_all_users(self):
-        """Palauttaa kaikki käyttäjät.
+        """Löytää ja palauttaa kaikki käyttäjät.
 
         Returns:
             Palauttaa listan User-olioita.
@@ -63,9 +63,9 @@ class UserRepository:
 
         Returns:
             Jos käyttäjätunnuksen perusteella löytyy käyttäjä tietokannasa, 
-            alauttaa User-olion, muuten None.
+            palauttaa User-olion, muuten None.
         """
-        
+
         cursor = self._connection.cursor()
         cursor.execute("select * from users where username=?",
                        (username,))

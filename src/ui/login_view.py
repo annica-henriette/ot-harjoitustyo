@@ -37,8 +37,6 @@ class LoginView:
         self._frame.destroy()
 
     def _login(self):
-        """Vastaa sisäänkirjautumisesta.
-        """
         username = self._username.get()
         password = self._password.get()
 

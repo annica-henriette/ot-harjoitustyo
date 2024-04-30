@@ -12,7 +12,7 @@ class WorkoutRepository:
         Args:
             connection: Connection-olio, joka vastaa tietokantayhteydestä.
         """
-        
+
         self._connection = connection
 
     def create_workout(self, workout):

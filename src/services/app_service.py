@@ -30,7 +30,7 @@ class AppService:
     """
 
     def __init__(self, workout_rep=workout_repository, user_rep=user_repository):
-        """Luokan konstruktori.
+        """Luokan konstruktori, joka luo uuden sovelluslogiikasta vastaavan palvelun.
 
         Args:
             workout_rep: 
@@ -59,7 +59,7 @@ class AppService:
             annetulla sisällöllä ja päivämäärällä.
 
         Returns:
-            Luotu treeni Workout-olion muodossa.
+            Palauttaa luodun treenin Workout-olio muodossa.
 
         """
 
@@ -175,7 +175,7 @@ class AppService:
             Palauttaa listan tietyn käyttäjän treeneistä Workout-olioiden muodossa.
             Jos käyttäjä ei ole kirjautunut, palauttaa tyhjän listan.
         """
-        
+
         if not self._user:
             return []
 

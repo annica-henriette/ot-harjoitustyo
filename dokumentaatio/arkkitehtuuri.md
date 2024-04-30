@@ -19,6 +19,7 @@ Käyttöliittymä sisältää seuraavat näkymät:
 - Kirjautuminen (aloitussivu)
 - Uuden käyttäjän rekisteröinti
 - Treeninäkymä
+- Uloskirjautuminen
 
 Näkymien näyttämisestä vastaa _UI_ luokka. Näkymistä aina yksi kerrallaan on näkyvillä ja jokainen on toteutettu omana luokkana.
 
@@ -38,6 +39,8 @@ Sovellus muodostuu luokista
        }
        class Workout{
            content
+           date
+           user
        }
 ```
 
@@ -101,7 +104,30 @@ sequenceDiagram
     AppService->>UserRepository: find_one_user("teemu")
     UserRepository-->>AppService: user
     AppService-->>UI: user
-    UI->UI: show_workout_view()
+    UI->>UI: show_workout_view()
 ```
 
 Painikkeen painamisen jälkeen sovelluslogiikan `AppService` metodi, käyttäjätunnuksen ja salasanan avulla, selvittää `UserRepository`:n avulla onko käyttäjätunnus jo olemassa. Jos käyttäjätunnus on olemassa ja salasanat täsmäävät, kirjautuminen onnistuu ja käyttöliittymä avaa sovelluksen varsinaisen päänäkymän, eli kirjautuneen käyttäjän treeninäkymän.
+
+### Uuden treenin luominen
+
+Sisäänkirjautunut käyttäjä voi lisätä uuden treenin klikkaamalla "Lisää uusi treeni"-painiketta.
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant UI
+    participant AppService
+    participant WorkoutRepository
+    participant workout
+    User->>UI: click "Lisää uusi treeni" button
+    UI->>AppService: create_workout("running", "2024-04-30", teemu)
+    AppService->>workout: Workout("running", "2024-04-30", teemu)
+    AppService->>WorkoutRepository: create_workout(workout)
+    WorkoutRepository-->>AppService: workout
+    AppService-->>UI: workout
+    UI->>UI: initialize_workouts()
+```
+
+Sama periaate toistuu sovelluksen muissa toiminnallisuuksissa, kuten treenin muokkaamisessa, poistamisessa
+ja käyttäjän uloskirjautumisessa.

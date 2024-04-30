@@ -3,7 +3,7 @@ class Workout:
 
         Attributes:
             content: Merkkijono, joka kuvaa treenin sisältöä.
-            date: Merrkijono, joka kuvaa treenin päivämäärää.
+            date: Merkkijono, joka kuvaa treenin päivämäärää.
             user: User-olio, joka kuvaa treenin omistajaa.
     """
 
@@ -12,8 +12,10 @@ class Workout:
 
         Args:
             content: Merkkijono, joka kuvaa treenin sisältöä.
-            date: Merrkijono, joka kuvaa treenin päivämäärää.
-            user: User-olio, joka kuvaa treenin omistajaa. Vapaaehtoinen, oletusarvo None.
+            date: Merkkijono, joka kuvaa treenin päivämäärää.
+            user: 
+                User-olio, joka kuvaa treenin omistajaa. 
+                Vapaaehtoinen, oletusarvo None.
         """
         self.content = content
         self.date = date
