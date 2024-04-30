@@ -52,6 +52,10 @@ Jos käyttäjän luominen onnistuu, käyttäjä kirjataan sisään ja siirrytä�
 
 Kun käyttäjä on kirjautunut sisään onnistuneesi, näkee hän omat lisätyt treenit.
 
-Treenejä on mahdollista lisätä "Lisää treeni"-painikkeen avulla ja poistaa "Poista treeni"-painikkeen avulla. 
+Treenejä on mahdollista lisätä "Lisää treeni"-painikkeen avulla, muokata "Muokkaa treeniä"-painikkeen avulla ja poistaa "Poista treeni"-painikkeen avulla. 
 
 Käyttäjä voi kirjautua ulos klikkaamalla "Kirjaudu ulos"-painiketta oikeassa ylänurkassa. 
+
+## Uloskirjautuminen
+
+Kun käyttäjä on kirjautunut ulos, voi hän palata sisäänkirjautumissivulle painamalla "Kirjaudu sisään"-painiketta.
