@@ -1,5 +1,4 @@
 import unittest
-from entities.workout import Workout
 from entities.user import User
 from services.app_service import (
     AppService, InvalidLoginError, UsernameTakenError, InvalidDate, DuplicateWorkoutError, NoSuchWorkoutError)
@@ -86,7 +85,7 @@ class TestAppService(unittest.TestCase):
         username = self.user_hupu.username
         password = self.user_hupu.password
 
-        user = self.app_service.create_user(username, password, login=False)
+        self.app_service.create_user(username, password, login=False)
 
         users = self.app_service.get_all_users()
 
@@ -198,7 +197,6 @@ class TestAppService(unittest.TestCase):
         self.assertEqual(workouts[0].date, "2024-04-22")
 
     def test_delete_one_workout_invalid_date(self):
-        user = self.user_hupu
 
         self.assertRaises(InvalidDate, lambda: self.app_service.delete_one_workout(
             "running", "12.01.2024"))

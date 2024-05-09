@@ -234,7 +234,7 @@ class AppService:
         """
 
         user_workouts = self.get_user_workouts()
-    
+
         for existing_workout in user_workouts:
             if existing_workout.content == new_content and existing_workout.date == date:
                 raise DuplicateWorkoutError(
@@ -251,5 +251,6 @@ class AppService:
         if not found_workout:
             raise NoSuchWorkoutError(
                 "Treeniä ei löydy annetulla sisällöllä ja päivämäärällä")
+
 
 app_service = AppService()
