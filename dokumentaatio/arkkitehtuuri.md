@@ -64,7 +64,7 @@ AppService pääsee käsiksi luokkiin User ja Workout luokkien [WorkoutRepositor
 Luokat _WorkoutRepository_ ja _UserRepository_ vastaavat tietojen tallentamisesta. Molemmat luokat tallentavat tietoa SQLite-tietokantaan. Molemmat noudattavat _Repository_-suunnittelumallia. 
 
 ### Tiedostot
-Käyttäjät ja treenit tallennetaan SQLite-tietokannan tauluihin _Users_ ja _Workouts_, jotka alustetaan _initialize_database.py_-tiedostossa.
+Käyttäjät ja treenit tallennetaan SQLite-tietokannan tauluihin _Users_ ja _Workouts_. Näiden alustus tapahtuu _initialize_database.py_-tiedostossa.
 
 ## Sovelluksen päätoiminnallisuudet
 

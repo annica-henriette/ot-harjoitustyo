@@ -1,6 +1,6 @@
 # Testausdokumentti
 
-Ohjelmaa on testattu automatisoitujen yksikkö- ja integraatiotestien avulla inittestilla sekä manuaalisilla järjestelmätason testeillä.
+Ohjelmaa on testattu automatisoitujen yksikkö- ja integraatiotestien avulla unittestilla sekä manuaalisilla järjestelmätason testeillä.
 
 ## Yksikkö- ja integraatiotestaus
 
@@ -15,17 +15,17 @@ Luokkia testataan ainoastaan testeissä käytössä olevilla tiedostoilla. _Work
 ### Testikattavuus
 
 Sovelluksen testauksen haarautumakattavuus on 97%. 
-Testaamatta on jättetty _build.py_, _config.py_ ja _initialize_database.py_-tiedostot.
+Testaamatta on jättetty _build.py_, _config.py_ ja _initialize\_database.py_-tiedostot.
 
 ## Järjestelmätestaus
 
-Sovelluksen järjestelmätestaus on suoritettu manualisesti.
+Järjestelmätestaus on suoritettu manuaalisesti.
 
 ### Asennus ja konfigurointi
 
 Sovellusta on testattu [käyttöohjeen](https://github.com/annica-henriette/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md) kuvaamalla tavalla Linux-ympäristössä.
 
-Sovellusta on testattu tilanteissa, jossa käyttäjät ja treenit tallettavat tiedostot ovat olleet olemassa ja tilanteissa, jossa ohjelma on luonut ne itse.
+Sovellusta on testattu tilanteissa, jossa tiedostot, jotka tallettavat käyttäjät ja treenit ovat olleet olemassa ja tilanteissa, jossa ohjelma on luonut ne itse.
 
 ### Toiminnallisuudet
 

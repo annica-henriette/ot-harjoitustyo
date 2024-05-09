@@ -20,7 +20,7 @@ Sovellus koostu neljästä näkymästä. Sovellus aukeaa kirjautumisnäkymään,
 	- Käyttäjätunnuksen tulee olla uniikki ja pituudeltaan 1-20 merkkiä
 - Käyttäjä voi kirjautua järjestelmään
 	- Kirjautuminen onnistuu, kun syötetään olemassaoleva käyttäjätunnus ja salasana
-	- Jos käyttäjä ei ole olemassa tai salasana ei täsmää, syntyy virheilmoitus
+	- Jos käyttäjätunnusta ei ole olemassa tai salasana on väärä, syntyy virheilmoitus
 - Käyttäjä voi hallinnoida omia treenejä 
 	- Käyttäjä voi lisätä uuden treenin
 		- Käyttäjä lisää treenille päivämäärän
@@ -28,7 +28,7 @@ Sovellus koostu neljästä näkymästä. Sovellus aukeaa kirjautumisnäkymään,
 		- Jos käyttäjä yrittää luoda treenin sisällöllä ja päivämäärällä, joka on jo olemassa, syntyy virheilmoitus
 	- Käyttäjä voi poistaa treenin
 	- Käyttäjä voi muokata treenin sisältöä
-		- Jos käyttäjä yrittää lumuokata treeniä sisällöllä ja päivämäärällä, joka on jo olemassa, syntyy virheilmoitus
+		- Jos käyttäjä yrittää muokata treeniä sisällöllä ja päivämäärällä, joka on jo olemassa, syntyy virheilmoitus
 - Käyttäjä voi kirjautua ulos
 
 ## Jatkokehitysideoita

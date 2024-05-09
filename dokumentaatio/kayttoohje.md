@@ -42,7 +42,7 @@ Kirjoita voimassa oleva käyttäjätunnus ja salasana syötekenttiin ja paina "K
 
 ## Käyttäjän luominen
 
-Kirjautusmisnäkymästä on mahdollista siirtyä uuden käyttäjän luomisnäkymään painamalla "Luo käyttäjä"-painiketta.
+Kirjautusmisnäkymästä voi siirtyä uuden käyttäjän luomisnäkymään painamalla "Luo käyttäjä"-painiketta.
 
 Uusi käyttäjä luodaan syöttämällä käyttäjätunnus ja salasana syötekenttiin ja painamalla "Luo käyttäjä"-painiketta.
 
