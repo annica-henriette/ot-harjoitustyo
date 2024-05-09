@@ -21,7 +21,7 @@ Käyttöliittymä sisältää seuraavat näkymät:
 - Treeninäkymä
 - Uloskirjautuminen
 
-Näkymien näyttämisestä vastaa _UI_ luokka. Näkymistä aina yksi kerrallaan on näkyvillä ja jokainen on toteutettu omana luokkana.
+Näkymien näyttämisestä vastaa _UI_ luokka. Näkymistä aina yksi kerrallaan on näkyvillä ja jokainen on toteutettu omana luokkana. Kun treenien tilanne muuttuu, eli niitä lisätään, muokataan tai poistetaan, kutsutaan sovelluksen metodia _initialize_workouts_, joka luo näkymän uudelleen.
 
 ## Sovelluslogiikka
 
@@ -60,6 +60,11 @@ AppService pääsee käsiksi luokkiin User ja Workout luokkien [WorkoutRepositor
        UserRepository ..> User
        WorkoutRepository ..> Workout
 ```
+## Tietojen pysyväistallennus
+Luokat _WorkoutRepository_ ja _UserRepository_ vastaavat tietojen tallentamisesta. Molemmat luokat tallentavat tietoa SQLite-tietokantaan. Molemmat noudattavat _Repository_-suunnittelumallia. 
+
+### Tiedostot
+Käyttäjät ja treenit tallennetaan SQLite-tietokannan tauluihin _Users_ ja _Workouts_, jotka alustetaan _initialize_database.py_-tiedostossa.
 
 ## Sovelluksen päätoiminnallisuudet
 
@@ -131,3 +136,7 @@ sequenceDiagram
 
 Sama periaate toistuu sovelluksen muissa toiminnallisuuksissa, kuten treenin muokkaamisessa, poistamisessa
 ja käyttäjän uloskirjautumisessa.
+
+## Ohjelman heikkoudet
+
+Ohjelmassa ei ole otettu kantaa ohjelman tietoturvaan. 

@@ -42,3 +42,8 @@
 - Uloskirjautuminen 1,5 t
 - Dokumentaatio 1,5 t
 - Yhteensä 10 tuntia
+
+## Viikko 7
+- Laadittu poikkeus duplikaattitreeneille muokkaus-funktionalisuudessa 1,0 t
+- Dokumentaatio 2,0 t
+- Yhteensä 3 tuntia

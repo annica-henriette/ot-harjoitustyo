@@ -468,6 +468,8 @@ class WorkoutModifyView:
                 self._error(str(error))
             except NoSuchWorkoutError as error:
                 self._error(str(error))
+            except DuplicateWorkoutError as error:
+                self._error(str(error))
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)

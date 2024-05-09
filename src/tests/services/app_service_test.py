@@ -212,7 +212,7 @@ class TestAppService(unittest.TestCase):
         self.assertRaises(NoSuchWorkoutError, lambda: self.app_service.delete_one_workout(
             "gym", "2024-04-24"))
         self.assertRaises(NoSuchWorkoutError, lambda: self.app_service.modify_workout(
-            "gym", "running", "2024-04-24"))
+            "gym", "badminton", "2024-04-24"))
 
     def test_modify_workout(self):
         self.login_user(self.user_hupu)
@@ -227,3 +227,12 @@ class TestAppService(unittest.TestCase):
         self.assertEqual(workouts[0].content, "gym")
         self.assertEqual(workouts[0].user, user.username)
         self.assertEqual(workouts[0].date, "2024-04-24")
+
+    def test_modify_workout_duplicate(self):
+        self.login_user(self.user_hupu)
+        user = self.user_hupu
+
+        self.app_service.create_workout("running", "2024-04-24", user.username)
+
+        self.assertRaises(DuplicateWorkoutError, lambda: self.app_service.modify_workout(
+            "running", "running", "2024-04-24"))

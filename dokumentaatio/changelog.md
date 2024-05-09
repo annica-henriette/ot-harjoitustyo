@@ -27,3 +27,8 @@
 - Käyttäjä voi muokata treeniä
 - Testattu, että treeniä voi muokata
 - Laadittu uloskirjautumiselle oma ikkuna
+
+# Viikko 7
+- Muokattu treenin muokkausta niin, että treeniä ei voi muokata niin, että se saa saman sisällön ja päivämäärän kun toisella treenillä jo on
+- Poikkeus nousee tästä
+- Testattu, että poikkeus nousee

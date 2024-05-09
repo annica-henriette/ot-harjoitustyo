@@ -226,11 +226,19 @@ class AppService:
             new_content: Muokattavan treenin uusi sisältö.
             date: Muokattavan treenin päivämäärä.
         Raises:
+            DuplicateWorkoutError:
+                Virhe, joka tapahtuu, jos käyttäjä yrittää muokata treeniä, niin, 
+                että sillä on sama sisältö ja päivämäärä kuin olemassa olevalla toisella treenillä.
             NoSuchWorkoutError:
                 Virhe, joka tapahtuu, kun muokattavaa treeniä ei löydy käyttäjän treeneistä.
         """
 
         user_workouts = self.get_user_workouts()
+    
+        for existing_workout in user_workouts:
+            if existing_workout.content == new_content and existing_workout.date == date:
+                raise DuplicateWorkoutError(
+                    "Tällä sisällöllä ja päivämäärällä on jo olemassa treeni")
 
         found_workout = False
         for workout in user_workouts:
@@ -243,6 +251,5 @@ class AppService:
         if not found_workout:
             raise NoSuchWorkoutError(
                 "Treeniä ei löydy annetulla sisällöllä ja päivämäärällä")
-
 
 app_service = AppService()
