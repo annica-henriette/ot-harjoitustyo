@@ -21,8 +21,9 @@ Sovelluksen toimintaa on testattu Python-versiolla 3.10.12.
 
 [Ensimmäinen release](https://github.com/annica-henriette/ot-harjoitustyo/releases/tag/viikko5)
 
-[Toinen release - UUSIN](https://github.com/annica-henriette/ot-harjoitustyo/releases/tag/viikko6)
+[Toinen release](https://github.com/annica-henriette/ot-harjoitustyo/releases/tag/viikko6)
 
+[Kolmas release - UUSIN](https://github.com/annica-henriette/ot-harjoitustyo/releases/tag/loppupalautus)
 ## Asennus
 
 1. Riippuvuudet asennetaan komennolla
